@@ -12,9 +12,8 @@ import javafx.stage.Stage;
 import java.io.InputStream;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.layout.AnchorPane;
-import org.alejandrocarrillo.controller.MenuClienteController;
-import org.alejandrocarrillo.controller.MenuPrincipalController;
-import org.alejandrocarrillo.controller.MenuClienteDatosController;
+import org.alejandrocarrillo.controller.*;
+
 
 /**
  *
@@ -54,7 +53,7 @@ public class Main extends Application {
         
         return resultado;
     }
-    
+    //MENU PRINCIPAL
     public void menuPrincipalView(){
         try{
             MenuPrincipalController menuPrincipalView = (MenuPrincipalController)switchScene("MenuPrincipal.fxml", 1000, 725);
@@ -64,6 +63,8 @@ public class Main extends Application {
         }
     }
     
+    //
+    //MENU CLIENTE
     public void menuClienteView(){
         try{
             MenuClienteController menuClienteView = (MenuClienteController)switchScene("MenuClienteView.fxml", 1000, 725);
@@ -72,15 +73,214 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
-    
     public void menuClienteVDatos(){
         try{
-            MenuClienteDatosController menuClienteVDatos = (MenuClienteDatosController)switchScene("MenuClienteVDatos.fxml", 1000, 700);
+            MenuClienteDatosController menuClienteVDatos = (MenuClienteDatosController)switchScene("MenuClienteVDatos.fxml", 1000, 725);
             menuClienteVDatos.setStage(this);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }    
+    }
+    
+    //
+    //MENU TICKET SOPORTE
+    public void menuTicketSoporte(){
+        try{
+            MenuTicketSoporteController menuTicketSoporte = (MenuTicketSoporteController)switchScene("MenuTicketSoporte.fxml", 1000, 725);
+            menuTicketSoporte.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //
+    //MENU CARGOS
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargos.fxml", 1000, 725);
+            menuCargosView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void formCargosView(){
+        try{
+            FormCargosController formCargosView = (FormCargosController)switchScene("FormCargos.fxml", 1000, 725);
+            formCargosView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //
+    //MENU EMPLEADOS
+    public void menuEmpleadosView(){
+        try{
+            MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)switchScene("MenuEmpleados.fxml", 1000, 725);
+            menuEmpleadosView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void formEmpleadosView(){
+        try{
+            FormEmpleadosController formEmpleadosView = (FormEmpleadosController)switchScene("FormEmpleados.fxml", 1000, 725);
+            formEmpleadosView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //
+    //MENU COMPRAS
+    public void menuComprasView(){
+        try{
+            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuCompras.fxml", 1000, 725);
+            menuComprasView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void formComprasView(){
+        try{
+            FormComprasController formComprasView = (FormComprasController)switchScene("FormCompras.fxml", 1000, 725);
+            formComprasView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }
+    }
+    
+    //MENU CATEGORIA PRODUCTOS
+    public void menuCategoriaProductosView(){
+        try{
+            MenuCategoriaProductosController menuCategoriaProductosView = (MenuCategoriaProductosController)switchScene("MenuCategoriaProductos.fxml", 1000, 725);
+            menuCategoriaProductosView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }
+    }
+    public void formCategoriaProductosView(){
+        try{
+            FormCategoriaProductosController formCategoriaProductosView = (FormCategoriaProductosController)switchScene("FormCategoriaProductos.fxml", 1000, 725);
+            formCategoriaProductosView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }
+    }
+    
+    //MENU FACTURAS
+    public void menuFacturasView(){
+        try{
+            MenuFacturasController menuFacturasView = (MenuFacturasController)switchScene("MenuFacturas.fxml", 1000, 725);
+            menuFacturasView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formFacturasView(){
+        try{
+            FormFacturasController formFacturasView = (FormFacturasController)switchScene("FormFacturas.fxml", 1000, 725);
+            formFacturasView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
+    //
+    //MENU DISTRIBUIDORES
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidoresView = (MenuDistribuidoresController)switchScene("MenuDistribuidores.fxml", 1000, 725);
+            menuDistribuidoresView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formDistribuidoresView(){
+        try{
+            FormDistribuidoresController formDistribuidoresView = (FormDistribuidoresController)switchScene("FormDistribuidores.fxml", 1000, 725);
+            formDistribuidoresView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
+    //
+    //MENU PRODUCTOS
+    public void menuProductosView(){
+        try{
+            MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProductos.fxml", 1000, 725);
+            menuProductosView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formProductosView(){
+        try{
+            FormProductosController formProductosView = (FormProductosController)switchScene("FormProductos.fxml", 1000, 725);
+            formProductosView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
+    //
+    //MENU DETALLE COMPRA
+    public void menuDetalleCompraView(){
+        try{
+            MenuDetalleCompraController menuDetalleCompraView = (MenuDetalleCompraController)switchScene("MenuDetalleCompra.fxml", 1000, 725);
+            menuDetalleCompraView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formDetalleCompraView(){
+        try{
+            FormDetalleCompraController formDetalleCompraView = (FormDetalleCompraController)switchScene("FormDetalleCompra.fxml", 1000, 725);
+            formDetalleCompraView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
+    //
+    //MENU PROMOCIONES
+    public void menuPromocionesView(){
+        try{
+            MenuPromocionesController menuPromocionesView = (MenuPromocionesController)switchScene("MenuPromociones.fxml", 1000, 725);
+            menuPromocionesView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formPromocionesView(){
+        try{
+            FormPromocionesController formPromocionesView = (FormPromocionesController)switchScene("FormPromociones.fxml", 1000, 725);
+            formPromocionesView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
+    //
+    //MENU DETALLE FACTURA
+    public void menuDetalleFacturaView(){
+        try{
+            MenuDetalleFacturaController menuDetalleFacturaView = (MenuDetalleFacturaController)switchScene("MenuDetalleFactura.fxml", 1000, 725);
+            menuDetalleFacturaView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formDetalleFacturaView(){
+        try{
+            FormDetalleFacturaController formDetalleFacturaView = (FormDetalleFacturaController)switchScene("FormDetalleFactura.fxml", 1000, 725);
+            formDetalleFacturaView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }

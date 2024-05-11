@@ -17,12 +17,34 @@ import org.alejandrocarrillo.system.Main;
 public class MenuPrincipalController implements Initializable {
     private Main stage;
     @FXML
-    MenuItem btnClientes;
+    MenuItem mtClientes, mtTicket, mtCargos, mtEmpleados, mtCompras, mtCategoriaProductos, mtFacturas, mtDistribuidores, mtProductos, mtDetalleCompra, mtPromociones, mtDetalleFactura;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnClientes){
+        if(event.getSource() == mtClientes){
             stage.menuClienteView();
+        } else if(event.getSource() == mtTicket){
+            stage.menuTicketSoporte();
+        } else if(event.getSource() == mtCargos){
+            stage.menuCargosView();
+        } else if(event.getSource() == mtEmpleados){
+            stage.menuEmpleadosView();
+        } else if(event.getSource() == mtCompras){
+            stage.menuComprasView();
+        } else if(event.getSource() == mtCategoriaProductos){
+            stage.menuCategoriaProductosView();
+        } else if(event.getSource() == mtFacturas){
+            stage.menuFacturasView();
+        } else if(event.getSource() == mtDistribuidores){
+            stage.menuDistribuidoresView();
+        } else if(event.getSource() == mtProductos){
+            stage.menuProductosView();
+        } else if(event.getSource() == mtDetalleCompra){
+            stage.menuDetalleCompraView();
+        } else if(event.getSource() == mtPromociones){
+            stage.menuPromocionesView();
+        } else if(event.getSource() == mtDetalleFactura){
+            stage.menuDetalleFacturaView();
         }
     }
     

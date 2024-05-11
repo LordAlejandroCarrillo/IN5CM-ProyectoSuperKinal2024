@@ -236,8 +236,8 @@ CREATE PROCEDURE sp_editarCompras(IN comId INT, IN fec DATE, IN tot DECIMAL(10,2
 BEGIN
 	UPDATE Compras
 		SET
-			fechaCompra = empId,
-            totalCompra = nom
+			fechaCompra = fec,
+            totalCompra = tot
 				WHERE compraId = comId;
         
 END$$
@@ -298,14 +298,13 @@ BEGIN
 END$$
 DELIMITER ;
 
-
 -- FACTURAS
 -- 
 DELIMITER $$
-CREATE PROCEDURE sp_agregarFacturas(IN fec DATE, IN hor TIME, IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
+CREATE PROCEDURE sp_agregarFacturas(IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
 BEGIN
-	INSERT INTO Facturas(nombreCategoria ,descripcionCategoria) VALUES
-		(fec,hor,cliId,empId,tot);
+	INSERT INTO Facturas(fecha,hora, clienteId, empleadoId, total) VALUES
+		(NOW(),CURTIME(),cliId,empId,tot);
 END$$
 DELIMITER ;
 
@@ -348,12 +347,12 @@ END$$
 DELIMITER ; 
 
 DELIMITER $$
-CREATE PROCEDURE sp_editarFacturas(IN facId INT, IN fec DATE, IN hor TIME, IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
+CREATE PROCEDURE sp_editarFacturas(IN facId INT, IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
 BEGIN
 	UPDATE Facturas
 		SET
-			fecha = facId,
-            hora = hor,
+			fecha = NOW(),
+            hora = CURTIME(),
             clienteId = cliId,
             empleadoId = empId,
             total = tot
@@ -373,7 +372,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE sp_listarTicketSoporte()
+DROP PROCEDURE sp_listarTicketSoporte()
 BEGIN
 	SELECT
 		TicketSoporte.ticketSoporteId,
@@ -678,7 +677,7 @@ DELIMITER ;
 -- DETALLE FACTURA
 -- 
 DELIMITER $$
-CREATE PROCEDURE sp_agregarDetalleFactura(IN facId DATE, IN proId INT)
+CREATE PROCEDURE sp_agregarDetalleFactura(IN facId INT, IN proId INT)
 BEGIN
 	INSERT INTO DetalleFactura(facturaId, productoId) VALUES
 		(facId,proId);
@@ -717,7 +716,7 @@ END$$
 DELIMITER ; 
 
 DELIMITER $$
-CREATE PROCEDURE sp_editarDetalleFactura(IN detFId INT,IN facId DATE, IN proId INT)
+CREATE PROCEDURE sp_editarDetalleFactura(IN detFId INT,IN facId INT, IN proId INT)
 BEGIN
 	UPDATE DetalleFactura
 		SET

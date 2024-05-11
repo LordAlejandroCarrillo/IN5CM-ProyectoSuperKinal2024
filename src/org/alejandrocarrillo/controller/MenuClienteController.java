@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,8 +32,7 @@ public class MenuClienteController implements Initializable {
     @FXML
     Button btnBack, btnBuscar, btnEliminar, btnAgregar, btnEditar, btnListar;
     @FXML
-    ComboBox cmbBuscar;
-    @FXML
+            
     TableView tblClientes;
     @FXML
     TableColumn colClienteId, colNit, colNombre, colApellido, colTelefono, colDireccion, colClienteId1, colNit1, colNombre1, colApellido1, colTelefono1, colDireccion1;
@@ -45,9 +43,7 @@ public class MenuClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarDatos();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        items.addAll("ID","Nombre","Apellido","Telefono","Direccion","NIT");
-        cmbBuscar.setItems(items);
+        
     }   
     
     @FXML
@@ -75,8 +71,6 @@ public class MenuClienteController implements Initializable {
                 ClienteDTO.getClienteDTO().setCliente(null);
                 cargarDatos();
             }
-        } else if(event.getSource() == cmbBuscar){
-            System.out.println(cmbBuscar.getValue());
         }
     }
     

@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS acarrilloSK_2020412;
+DROP DATABASE IF EXISTS acarrilloSK_20204121;
 
-CREATE DATABASE IF NOT EXISTS acarrilloSK_2020412;
+CREATE DATABASE IF NOT EXISTS acarrilloSK_20204121;
 
-USE acarrilloSK_2020412;
+USE acarrilloSK_20204121;
 
 CREATE TABLE Clientes(
 	clienteId INT NOT NULL AUTO_INCREMENT,
@@ -140,3 +140,67 @@ CREATE TABLE DetalleFactura(
 	CONSTRAINT FK_DetalleFactura_Productos FOREIGN KEY (productoId)
 		REFERENCES Productos(productoId)
 );
+       
+-- INSERTAR VALORES
+	  
+INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion) VALUES
+	('090912-7','Juan','Fernandez','4301-2312','Ciudad'),
+    ('785412-4','Hugo','Velasquez','5310-7897','Ciudad');
+	  
+INSERT INTO Cargos(nombre, descripcionCargo) VALUES
+	('Cargo1','Cargo1'),
+    ('Cargo2','Cargo2');
+    
+INSERT INTO Empleados(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargadoId) VALUES
+	('Pedro','Juarez',850,'08:20', '17:30',1,NULL),
+    ('Jose','Barrera',1500,'08:20', '17:30',2,NULL);
+    
+INSERT INTO Compras(fechaCompra, totalCompra) VALUES
+	(NOW(), NULL),
+    (NOW(), NULL);
+    
+INSERT INTO CategoriaProductos(nombreCategoria, descripcionCategoria) VALUES
+	('Categoria1','Categoria1'),
+    ('Categoria2','Categoria');
+    
+INSERT INTO Facturas(fecha, hora, clienteId, empleadoId, total) VALUES
+	(NOW(), CURTIME(),1,2,NULL),
+    (NOW(), CURTIME(),2,1,NULL);
+    
+INSERT INTO TicketSoporte(descripcionTicket, estatus, clienteId, facturaId) VALUES
+	('Ticket Soporte 1', 'Recién Creado',1,NULL),
+    ('Ticket Soporte 2', 'Recién Creado',2,NULL);
+    
+INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web) VALUES
+	('Jorge','Casa','54641-4','5678-9812', NULL),
+    ('Paco','Casa','48212-7','3645-2456', NULL);
+    
+INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId) VALUES
+	('Cereal','Cereal de Chocolate',100,45,40,35,NULL,1,2),
+    ('Pan','Pan Rodajado',120,74,67,61,NULL,2,1);
+    
+INSERT INTO DetalleCompra(cantidadCompra, productoId, compraId) VALUES
+	(46,1,2),
+    (58,2,1);
+    
+INSERT INTO Promociones(precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacion, productoId) VALUES
+	(36,'20%', '2024/02/12','2024/03/12',1),
+    (55.5,'25%', '2024/02/12','2024/03/12',2);
+    
+INSERT INTO DetalleFactura(facturaId , productoId) VALUES
+	(1,2),
+    (2,1);
+    
+SELECT * FROM Clientes;
+SELECT * FROM Cargos;
+SELECT * FROM Empleados;
+SELECT * FROM Compras;
+SELECT * FROM CategoriaProductos;
+SELECT * FROM Facturas;
+SELECT * FROM TicketSoporte;
+SELECT * FROM Distribuidores;
+SELECT * FROM Productos;
+SELECT * FROM DetalleCompra;
+SELECT * FROM Promociones;
+SELECT * FROM DetalleFactura;
+ 

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexion {
     private static Conexion instance;
     
-    private String jdbcurl = "jdbc:mysql://localhost:3306/acarrilloSK_2020412?serverTimezone=GMT-6";
+    private String jdbcurl = "jdbc:mysql://localhost:3306/acarrilloSK_20204121?serverTimezone=GMT-6";
     private String usuario = "root";
     private String contrasenia = "admin";
 

@@ -32,8 +32,6 @@ public class MenuClienteDatosController implements Initializable {
     TextField tfID, tfNombre, tfApellido, tfTelefono, tfDireccion, tfNit;
     @FXML
     Button btnGuardar, btnCancelar;
-    @FXML
-    TableView tblClientes;
     private Connection conexion;
     private PreparedStatement statement;
   
@@ -89,10 +87,6 @@ public class MenuClienteDatosController implements Initializable {
                 }
             }
         }
-    }
-    
-    public int opcion(int opcion){
-        return opcion;
     }
 
     public void agregarClientes(String n17, String nom, String ape, String tel, String dir){
