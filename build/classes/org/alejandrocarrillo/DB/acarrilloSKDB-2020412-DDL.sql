@@ -96,7 +96,7 @@ CREATE TABLE Productos(
     precioVentaUnitario DECIMAL(10,2) NOT NULL,	
     precioVentaMayor DECIMAL(10,2) NOT NULL,
     precioCompra DECIMAL(10,2) NOT NULL,
-    imagenProducto BLOB,
+    imagenProducto LONGBLOB,
     distribuidorId INT NOT NULL,
     categoriaProductosId INT NOT NULL,
     PRIMARY KEY PK_productoId (productoId),
@@ -168,8 +168,8 @@ INSERT INTO Facturas(fecha, hora, clienteId, empleadoId, total) VALUES
     (NOW(), CURTIME(),2,1,NULL);
     
 INSERT INTO TicketSoporte(descripcionTicket, estatus, clienteId, facturaId) VALUES
-	('Ticket Soporte 1', 'Recién Creado',1,NULL),
-    ('Ticket Soporte 2', 'Recién Creado',2,NULL);
+	('Ticket Soporte 1', 'Recién Creado',1,2),
+    ('Ticket Soporte 2', 'Recién Creado',2,1);
     
 INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web) VALUES
 	('Jorge','Casa','54641-4','5678-9812', NULL),

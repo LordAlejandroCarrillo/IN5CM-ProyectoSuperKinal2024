@@ -8,12 +8,13 @@ public class Promocion{
     private String descripcionPromocion;
     private Date fechaInicio;
     private Date fechaFinalizacion;
+    private String producto;
     private int productoId;
     
     public Promocion(){
         
     }
-
+    //Agregar
     public Promocion(int promocionId, double precioPromocion, String descripcionPromocion, Date fechaInicio, Date fechaFinalizacion, int productoId) {
         this.promocionId = promocionId;
         this.precioPromocion = precioPromocion;
@@ -21,6 +22,15 @@ public class Promocion{
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
         this.productoId = productoId;
+    }
+    //Listar
+    public Promocion(int promocionId, double precioPromocion, String descripcionPromocion, Date fechaInicio, Date fechaFinalizacion, String producto) {
+        this.promocionId = promocionId;
+        this.precioPromocion = precioPromocion;
+        this.descripcionPromocion = descripcionPromocion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinalizacion = fechaFinalizacion;
+        this.producto = producto;
     }
 
     public int getPromocionId() {
@@ -70,9 +80,17 @@ public class Promocion{
     public void setProductoId(int productoId) {
         this.productoId = productoId;
     }
+
+    public String getProducto() {
+        return producto;
+    }
+
+    public void setProducto(String producto) {
+        this.producto = producto;
+    }
     
     @Override
     public String toString() {
-        return "Promocion";
+        return "Id: " + promocionId + " | " + precioPromocion;
     }
 }

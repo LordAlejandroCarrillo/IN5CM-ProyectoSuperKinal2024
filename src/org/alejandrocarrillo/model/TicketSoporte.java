@@ -6,19 +6,22 @@ public class TicketSoporte {
     private String estatus;
     private String cliente;
     private int clienteId;
+    private String factura;
     private int facturaId;
     
     public TicketSoporte(){
         
     }
     //Listar
-    public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, String cliente, int facturaId) {
+
+    public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, String cliente, String factura) {
         this.ticketSoporteId = ticketSoporteId;
         this.descripcionTicket = descripcionTicket;
         this.estatus = estatus;
         this.cliente = cliente;
-        this.facturaId = facturaId;
+        this.factura = factura;
     }
+    
     //Agregar
     public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, int clienteId, int facturaId) {
         this.ticketSoporteId = ticketSoporteId;
@@ -74,6 +77,14 @@ public class TicketSoporte {
 
     public void setFacturaId(int facturaId) {
         this.facturaId = facturaId;
+    }
+
+    public String getFactura() {
+        return factura;
+    }
+
+    public void setFactura(String factura) {
+        this.factura = factura;
     }
     
     @Override

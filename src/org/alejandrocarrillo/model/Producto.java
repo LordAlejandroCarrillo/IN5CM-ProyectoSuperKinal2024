@@ -1,4 +1,5 @@
 package org.alejandrocarrillo.model;
+import java.io.InputStream;
 import java.sql.Blob;
 public class Producto {
     private int productoId;
@@ -8,15 +9,17 @@ public class Producto {
     private double precioVentaUnitario;
     private double precioVentaMayor;
     private double precioCompra;
-    private Blob imagenProducto;
+    private InputStream imagenProducto;
+    private String distribuidor;
     private int distribuidorId;
+    private String categoriaProductos;
     private int categoriaProductosId;
     
     public Producto(){
         
     }
 
-    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, Blob imagenProducto, int distribuidorId, int categoriaProductosId) {
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, InputStream imagenProducto, int distribuidorId, int categoriaProductosId) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -29,6 +32,19 @@ public class Producto {
         this.categoriaProductosId = categoriaProductosId;
     }
 
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, InputStream imagenProducto, String distribuidor, String categoriaProductos) {
+        this.productoId = productoId;
+        this.nombreProducto = nombreProducto;
+        this.descripcionProducto = descripcionProducto;
+        this.cantidadStock = cantidadStock;
+        this.precioVentaUnitario = precioVentaUnitario;
+        this.precioVentaMayor = precioVentaMayor;
+        this.precioCompra = precioCompra;
+        this.imagenProducto = imagenProducto;
+        this.distribuidor = distribuidor;
+        this.categoriaProductos = categoriaProductos;
+    }
+    
     public int getProductoId() {
         return productoId;
     }
@@ -85,11 +101,11 @@ public class Producto {
         this.precioCompra = precioCompra;
     }
 
-    public Blob getImagenProducto() {
+    public InputStream getImagenProducto() {
         return imagenProducto;
     }
 
-    public void setImagenProducto(Blob imagenProducto) {
+    public void setImagenProducto(Blob InputStream) {
         this.imagenProducto = imagenProducto;
     }
 
@@ -108,9 +124,25 @@ public class Producto {
     public void setCategoriaProductosId(int categoriaProductosId) {
         this.categoriaProductosId = categoriaProductosId;
     }
+
+    public String getDistribuidor() {
+        return distribuidor;
+    }
+
+    public void setDistribuidor(String distribuidor) {
+        this.distribuidor = distribuidor;
+    }
+
+    public String getCategoriaProductos() {
+        return categoriaProductos;
+    }
+
+    public void setCategoriaProductos(String categoriaProductos) {
+        this.categoriaProductos = categoriaProductos;
+    }
     
     @Override
     public String toString() {
-        return "Producto";
+        return "Id: " + productoId + " | " + nombreProducto;
     }
 }

@@ -2,7 +2,9 @@ package org.alejandrocarrillo.model;
 
 public class DetalleFactura {
     private int detalleFacturaId;
+    private String factura;
     private int facturaId;
+    private String producto;
     private int productoId;
     
     public DetalleFactura(){
@@ -15,6 +17,12 @@ public class DetalleFactura {
         this.productoId = productoId;
     }
 
+    public DetalleFactura(int detalleFacturaId, String factura, String producto) {
+        this.detalleFacturaId = detalleFacturaId;
+        this.factura = factura;
+        this.producto = producto;
+    }
+    
     public int getDetalleFacturaId() {
         return detalleFacturaId;
     }
@@ -38,9 +46,25 @@ public class DetalleFactura {
     public void setProductoId(int productoId) {
         this.productoId = productoId;
     }
+
+    public String getFactura() {
+        return factura;
+    }
+
+    public void setFactura(String factura) {
+        this.factura = factura;
+    }
+
+    public String getProducto() {
+        return producto;
+    }
+
+    public void setProducto(String producto) {
+        this.producto = producto;
+    }
     
     @Override
     public String toString() {
-        return "DetalleFactura";
+        return "Id: " + detalleFacturaId + " | " + facturaId + " | " + productoId;
     }
 }

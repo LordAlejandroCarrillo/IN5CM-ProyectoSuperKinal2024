@@ -3,7 +3,9 @@ package org.alejandrocarrillo.model;
 public class DetalleCompra {
     private int detalleCompraId;
     private int cantidadCompra;
+    private String producto;
     private int productoId;
+    private String compra;
     private int compraId;
     
     public DetalleCompra(){
@@ -15,6 +17,13 @@ public class DetalleCompra {
         this.cantidadCompra = cantidadCompra;
         this.productoId = productoId;
         this.compraId = compraId;
+    }
+
+    public DetalleCompra(int detalleCompraId, int cantidadCompra, String producto, String compra) {
+        this.detalleCompraId = detalleCompraId;
+        this.cantidadCompra = cantidadCompra;
+        this.producto = producto;
+        this.compra = compra;
     }
 
     public int getDetalleCompraId() {
@@ -48,9 +57,25 @@ public class DetalleCompra {
     public void setCompraId(int compraId) {
         this.compraId = compraId;
     }
+
+    public String getProducto() {
+        return producto;
+    }
+
+    public void setProducto(String producto) {
+        this.producto = producto;
+    }
+
+    public String getCompra() {
+        return compra;
+    }
+
+    public void setCompra(String compra) {
+        this.compra = compra;
+    }
     
     @Override
     public String toString() {
-        return "DetalleCompra";
+        return "Id: " + detalleCompraId + " | " + cantidadCompra;
     }
 }

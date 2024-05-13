@@ -1,16 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.alejandrocarrillo.controller.MenuPromocionesController">
+<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.alejandrocarrillo.controller.MenuPromocionesController">
    <children>
       <ImageView fitHeight="725.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/MenuPromociones.png" />
          </image>
       </ImageView>
+      <TableView fx:id="tblPromociones" layoutX="34.0" layoutY="376.0" onMouseClicked="#cargarEditar" prefHeight="335.0" prefWidth="933.0" style="-fx-background-radius: 5;">
+         <columns>
+            <TableColumn fx:id="colPromocion" prefWidth="100.0" text="Promocion ID" />
+            <TableColumn fx:id="colPrecio" prefWidth="148.0" text="Precio Promocion" />
+            <TableColumn fx:id="colDescripcion" prefWidth="254.0" text="Descripcion Promocion" />
+            <TableColumn fx:id="colInicio" prefWidth="129.0" text="Fecha Inicio" />
+            <TableColumn fx:id="colFin" minWidth="0.0" prefWidth="129.0" text="Fecha Finalizacion" />
+            <TableColumn fx:id="colProducto" minWidth="0.0" prefWidth="172.0" text="Producto" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="cmbProducto" layoutX="167.0" layoutY="253.0" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: white;" />
+      <Text fill="WHITE" layoutX="167.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto" wrappingWidth="202.0">
+         <font>
+            <Font name="Bauhaus 93" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnGuardar" layoutX="34.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: black;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVaciar" layoutX="159.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: black;" text="Vaciar Form" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="13.0" />
+         </font>
+      </Button>
+      <Text fill="WHITE" layoutX="34.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="100.0">
+         <font>
+            <Font name="Bauhaus 93" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="76.0" prefWidth="96.0" style="-fx-background-color: black;" text=" ←" textFill="WHITE">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfPromocion" layoutX="34.0" layoutY="251.0" prefHeight="35.0" prefWidth="100.0" />
+      <Button fx:id="btnBuscar" layoutX="618.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="tfBuscar" layoutX="491.0" layoutY="308.0" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="100.0" />
+      <Button fx:id="btnListar" layoutX="299.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="58.0" style="-fx-background-color: black;" text="Listar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="tfFin" layoutX="400.0" layoutY="252.0" prefHeight="37.0" prefWidth="134.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="400.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Fin" wrappingWidth="154.0">
+         <font>
+            <Font name="Bauhaus 93" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tfPrecio" layoutX="562.0" layoutY="253.0" prefHeight="37.0" prefWidth="134.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="562.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Promoción" wrappingWidth="154.0">
+         <font>
+            <Font name="Bauhaus 93" size="25.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" layoutX="277.0" layoutY="298.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
+      <Text fill="WHITE" layoutX="400.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato 00:00" wrappingWidth="81.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="716.0" layoutY="253.0" prefHeight="96.0" prefWidth="253.0" />
+      <Text fill="WHITE" layoutX="716.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="154.0">
+         <font>
+            <Font name="Bauhaus 93" size="25.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

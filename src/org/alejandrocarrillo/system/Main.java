@@ -122,14 +122,6 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
-    public void formEmpleadosView(){
-        try{
-            FormEmpleadosController formEmpleadosView = (FormEmpleadosController)switchScene("FormEmpleados.fxml", 1000, 725);
-            formEmpleadosView.setStage(this);
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
     
     //
     //MENU COMPRAS
@@ -177,14 +169,6 @@ public class Main extends Application {
            System.out.println(e.getMessage());
         }  
     }
-    public void formFacturasView(){
-        try{
-            FormFacturasController formFacturasView = (FormFacturasController)switchScene("FormFacturas.fxml", 1000, 725);
-            formFacturasView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
-        }  
-    }
     
     //
     //MENU DISTRIBUIDORES
@@ -209,16 +193,8 @@ public class Main extends Application {
     //MENU PRODUCTOS
     public void menuProductosView(){
         try{
-            MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProductos.fxml", 1000, 725);
+            MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProducto.fxml", 1000, 725);
             menuProductosView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
-        }  
-    }
-    public void formProductosView(){
-        try{
-            FormProductosController formProductosView = (FormProductosController)switchScene("FormProductos.fxml", 1000, 725);
-            formProductosView.setStage(this);
         } catch(Exception e){
            System.out.println(e.getMessage());
         }  
@@ -234,14 +210,6 @@ public class Main extends Application {
            System.out.println(e.getMessage());
         }  
     }
-    public void formDetalleCompraView(){
-        try{
-            FormDetalleCompraController formDetalleCompraView = (FormDetalleCompraController)switchScene("FormDetalleCompra.fxml", 1000, 725);
-            formDetalleCompraView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
-        }  
-    }
     
     //
     //MENU PROMOCIONES
@@ -253,14 +221,6 @@ public class Main extends Application {
            System.out.println(e.getMessage());
         }  
     }
-    public void formPromocionesView(){
-        try{
-            FormPromocionesController formPromocionesView = (FormPromocionesController)switchScene("FormPromociones.fxml", 1000, 725);
-            formPromocionesView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
-        }  
-    }
     
     //
     //MENU DETALLE FACTURA
@@ -268,14 +228,6 @@ public class Main extends Application {
         try{
             MenuDetalleFacturaController menuDetalleFacturaView = (MenuDetalleFacturaController)switchScene("MenuDetalleFactura.fxml", 1000, 725);
             menuDetalleFacturaView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
-        }  
-    }
-    public void formDetalleFacturaView(){
-        try{
-            FormDetalleFacturaController formDetalleFacturaView = (FormDetalleFacturaController)switchScene("FormDetalleFactura.fxml", 1000, 725);
-            formDetalleFacturaView.setStage(this);
         } catch(Exception e){
            System.out.println(e.getMessage());
         }  
