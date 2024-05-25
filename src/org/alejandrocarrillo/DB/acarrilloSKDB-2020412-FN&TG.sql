@@ -226,3 +226,49 @@ DELIMITER ;
 -- SELECT * FROM Productos;
 -- SELECT * FROM DetalleCompra;
 
+
+-- Promociones
+-- 
+
+
+DELIMITER $$
+CREATE FUNCTION fn_promo(factId INT) RETURNS DATE DETERMINISTIC
+BEGIN
+	DECLARE promocion DECIMAL(10,2);
+    DECLARE obtenerPrecio DECIMAL(10,2);
+    DECLARE fecha DATE;
+    DECLARE precioFinal DECIMAL(10,2);
+    DECLARE total DECIMAL(10,2) DEFAULT 0;
+    DECLARE i INT DEFAULT 1;
+    
+    contador : LOOP
+    
+    IF factId = (SELECT DetalleFactura.facturaId FROM DetalleFactura WHERE detalleFacturaId = i) THEN
+		SET obtenerPrecio = (SELECT Productos.precioVentaUnitario FROM Productos WHERE productoId = (SELECT productoId FROM DetalleFactura WHERE detalleFacturaId = i));
+        SET fecha = (SELECT Promociones.fechaFinalizacion FROM Promociones WHERE productoId = (SELECT D.productoId FROM DetalleFactura D WHERE detalleFacturaId = i));
+        SET total = total + obtenerPrecio;
+    END IF;
+    IF i = (SELECT COUNT(*) FROM DetalleFactura) THEN
+		LEAVE contador;
+    END IF;
+    
+    SET i = i + 1;
+    END LOOP contador;
+    
+    IF fecha >= NOW() THEN
+		SET precioFinal = obtenerPrecio;
+    END IF;
+    IF fecha < NOW() THEN
+		SET precioFinal = promocion;
+    END IF;
+    
+    RETURN fecha;
+END $$
+DELIMITER ;
+DROP FUNCTION fn_promo;
+-- SELECT fn_promo(1);
+-- select * from detallefactura;
+-- select * from promociones;
+-- select * from productos;
+
+

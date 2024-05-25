@@ -6,26 +6,27 @@ public class DetalleCompra {
     private String producto;
     private int productoId;
     private String compra;
+    private double totalCompra;
     private int compraId;
     
     public DetalleCompra(){
         
     }
-
+    //Agregar
     public DetalleCompra(int detalleCompraId, int cantidadCompra, int productoId, int compraId) {
         this.detalleCompraId = detalleCompraId;
         this.cantidadCompra = cantidadCompra;
         this.productoId = productoId;
         this.compraId = compraId;
     }
-
-    public DetalleCompra(int detalleCompraId, int cantidadCompra, String producto, String compra) {
+    //Listar
+    public DetalleCompra(int detalleCompraId, int cantidadCompra, String producto, String compra, double totalCompra) {
         this.detalleCompraId = detalleCompraId;
         this.cantidadCompra = cantidadCompra;
         this.producto = producto;
         this.compra = compra;
+        this.totalCompra = totalCompra;
     }
-
     public int getDetalleCompraId() {
         return detalleCompraId;
     }
@@ -72,6 +73,14 @@ public class DetalleCompra {
 
     public void setCompra(String compra) {
         this.compra = compra;
+    }
+
+    public double getTotalCompra() {
+        return totalCompra;
+    }
+
+    public void setTotalCompra(double totalCompra) {
+        this.totalCompra = totalCompra;
     }
     
     @Override

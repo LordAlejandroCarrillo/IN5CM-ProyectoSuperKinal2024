@@ -9,7 +9,7 @@ public class Producto {
     private double precioVentaUnitario;
     private double precioVentaMayor;
     private double precioCompra;
-    private InputStream imagenProducto;
+    private Blob imagenProducto;
     private String distribuidor;
     private int distribuidorId;
     private String categoriaProductos;
@@ -18,8 +18,8 @@ public class Producto {
     public Producto(){
         
     }
-
-    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, InputStream imagenProducto, int distribuidorId, int categoriaProductosId) {
+    
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, Blob imagenProducto, int distribuidorId, int categoriaProductosId) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -32,7 +32,7 @@ public class Producto {
         this.categoriaProductosId = categoriaProductosId;
     }
 
-    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, InputStream imagenProducto, String distribuidor, String categoriaProductos) {
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, Blob imagenProducto, String distribuidor, String categoriaProductos) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -101,11 +101,11 @@ public class Producto {
         this.precioCompra = precioCompra;
     }
 
-    public InputStream getImagenProducto() {
+    public Blob getImagenProducto() {
         return imagenProducto;
     }
 
-    public void setImagenProducto(Blob InputStream) {
+    public void setImagenProducto(Blob imagenProducto) {
         this.imagenProducto = imagenProducto;
     }
 

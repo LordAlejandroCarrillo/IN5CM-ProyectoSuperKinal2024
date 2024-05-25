@@ -67,7 +67,7 @@ public class MenuDistribuidoresController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnAgregar){
             stage.formDistribuidoresView();
             opcion = 1;

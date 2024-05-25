@@ -33,9 +33,9 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
 
 public class MenuPromocionesController implements Initializable {
     private Main stage;
-    
+    private Promocion pr;
     @FXML
-    Button btnBack, btnGuardar, btnVaciar, btnListar, btnBuscar;
+    Button btnBack, btnGuardar, btnVaciar, btnListar, btnBuscar, btnEliminar;
     @FXML
     TextField tfBuscar, tfPrecio, tfFin, tfPromocion;
     @FXML
@@ -71,7 +71,13 @@ public class MenuPromocionesController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
+        } else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
+                eliminarPromociones(pr.getPromocionId());
+                cargarDatos();
+                vaciarCampos();
+            }
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
         } else if(event.getSource() == btnListar){
@@ -102,6 +108,7 @@ public class MenuPromocionesController implements Initializable {
                         if(token){
                             editarPromocion();
                             cargarDatos();
+                            vaciarCampos();
                         } else{
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                         }
@@ -124,7 +131,7 @@ public class MenuPromocionesController implements Initializable {
     }
     
     public void cargarEditar(){
-        Promocion pr = (Promocion)tblPromociones.getSelectionModel().getSelectedItem();
+        pr = (Promocion)tblPromociones.getSelectionModel().getSelectedItem();
         if(pr !=  null){
             tfPromocion.setText(Integer.toString(pr.getPromocionId()));
             tfPrecio.setText(Double.toString(pr.getPrecioPromocion()));
@@ -313,6 +320,29 @@ public class MenuPromocionesController implements Initializable {
         return FXCollections.observableList(promociones);
     }
     
+    public void eliminarPromociones(int id){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_eliminarPromociones(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     public ObservableList<Producto> listarProductos(){
         
         ArrayList<Producto> productos = new ArrayList<>();
@@ -331,7 +361,7 @@ public class MenuPromocionesController implements Initializable {
                 double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
-                InputStream imagenProducto = resultSet.getBinaryStream("imagenProducto");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
                 String distribuidor = resultSet.getString("distribuidor");
                 String categoriaProductos = resultSet.getString("categoriaProductos");
                 productos.add(new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos));

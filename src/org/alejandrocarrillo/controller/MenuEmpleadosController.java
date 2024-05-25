@@ -30,9 +30,9 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
 
 public class MenuEmpleadosController implements Initializable {
     private Main stage;
-    
+    private Empleado em;
     @FXML
-    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnAsignar;
+    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnAsignar, btnEliminar;
     @FXML
     TextField tfBuscar, tfSueldo, tfSalida, tfEntrada, tfApellido, tfNombre, tfID;
     @FXML
@@ -68,9 +68,15 @@ public class MenuEmpleadosController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
+        } else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
+                eliminarEmpleados(em.getEmpleadoId());
+                cargarDatos();
+                vaciarCampos();
+            }
         } else if(event.getSource() == btnListar){
             cargarDatos();
         } else if(event.getSource() == btnGuardar){
@@ -90,6 +96,7 @@ public class MenuEmpleadosController implements Initializable {
                     agregarEmpleado();
                     cargarDatos();
                     vaciarCampos();
+                    cmbEncargado.setItems(listarEmpleado());
                 } else{
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
@@ -127,7 +134,7 @@ public class MenuEmpleadosController implements Initializable {
     }
     
     public void cargarEditar(){
-        Empleado em = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
+        em = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
         if(em !=  null){
             tfID.setText(Integer.toString(em.getEmpleadoId()));
             tfNombre.setText(em.getNombreEmpleado());
@@ -310,6 +317,29 @@ public class MenuEmpleadosController implements Initializable {
         }
         
         return FXCollections.observableList(empleados);
+    }
+    
+    public void eliminarEmpleados(int id){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_eliminarEmpleados(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     public ObservableList<Empleado> listarEmpleado(){

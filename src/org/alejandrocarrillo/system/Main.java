@@ -63,6 +63,15 @@ public class Main extends Application {
         }
     }
     
+    public void menuModulosView(){
+        try{
+            MenuModulosController menuModulosView = (MenuModulosController)switchScene("MenuModulos.fxml", 1000, 725);
+            menuModulosView.setStage(this);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     //
     //MENU CLIENTE
     public void menuClienteView(){
@@ -120,25 +129,6 @@ public class Main extends Application {
             menuEmpleadosView.setStage(this);
         } catch(Exception e){
             System.out.println(e.getMessage());
-        }
-    }
-    
-    //
-    //MENU COMPRAS
-    public void menuComprasView(){
-        try{
-            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuCompras.fxml", 1000, 725);
-            menuComprasView.setStage(this);
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    public void formComprasView(){
-        try{
-            FormComprasController formComprasView = (FormComprasController)switchScene("FormCompras.fxml", 1000, 725);
-            formComprasView.setStage(this);
-        } catch(Exception e){
-           System.out.println(e.getMessage());
         }
     }
     
@@ -232,7 +222,25 @@ public class Main extends Application {
            System.out.println(e.getMessage());
         }  
     }
-    
+        
+    //
+    //MENU Usuarios
+    public void menuLogInView(){
+        try{
+            MenuLogInController menuLogInView = (MenuLogInController)switchScene("MenuLogIn.fxml", 1000, 725);
+            menuLogInView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formLogInView(){
+        try{
+            FormLogInController formLogInView = (FormLogInController)switchScene("FormLogIn.fxml", 1000, 725);
+            formLogInView.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
     public static void main(String[] args) {
         launch(args);
     }

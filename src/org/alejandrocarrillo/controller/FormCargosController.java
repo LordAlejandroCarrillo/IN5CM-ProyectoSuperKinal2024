@@ -75,17 +75,17 @@ public class FormCargosController implements Initializable {
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             }else if(MenuCargosController.opcion == 2){
-                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
-                    if(token){
+                if(token){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
                         editarCargo();
                         CargoDTO.getCargoDTO().setCargo(null);
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(500);
-                        stage.menuCargosView();   
+                        stage.menuCargosView();  
                     } else{
-                        SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                        stage.menuCargosView();
                     }
                 } else{
-                    stage.menuCargosView();
+                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             }
         }

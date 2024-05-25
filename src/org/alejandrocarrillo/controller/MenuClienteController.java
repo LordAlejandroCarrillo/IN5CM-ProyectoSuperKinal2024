@@ -49,7 +49,7 @@ public class MenuClienteController implements Initializable {
     @FXML
     public void handleButtonAction (ActionEvent event){
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos(Integer.parseInt(textField.getText()));
         } else if(event.getSource() == btnAgregar){

@@ -67,7 +67,7 @@ public class MenuDetalleFacturaController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuFacturasView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
         } else if(event.getSource() == btnListar){
@@ -318,7 +318,7 @@ public class MenuDetalleFacturaController implements Initializable {
                 double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
-                InputStream imagenProducto = resultSet.getBinaryStream("imagenProducto");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
                 String distribuidor = resultSet.getString("distribuidor");
                 String categoriaProductos = resultSet.getString("categoriaProductos");
                 productos.add(new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos));

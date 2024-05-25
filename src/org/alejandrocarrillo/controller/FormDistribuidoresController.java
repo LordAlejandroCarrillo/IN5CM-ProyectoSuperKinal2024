@@ -60,7 +60,7 @@ public class FormDistribuidoresController implements Initializable {
             DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
             stage.menuDistribuidoresView();
         } else if(event.getSource() == btnGuardar){
-            if(!tfNombre.getText().equals("") && !tfDireccion.getText().equals("") && !tfNit.getText().equals("") && !tfTelefono.getText().equals("") && !tfWeb.getText().equals("")){
+            if(!tfNombre.getText().equals("") && !tfDireccion.getText().equals("") && !tfNit.getText().equals("") && !tfTelefono.getText().equals("")){
                token = true; 
             } else{
                 token = false;
@@ -74,17 +74,17 @@ public class FormDistribuidoresController implements Initializable {
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             } else if(MenuDistribuidoresController.opcion == 2){
-                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
-                    if(token){
+                if(token){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
                         editarDistribuidor();
                         DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(500);
-                        stage.menuDistribuidoresView();   
+                        stage.menuDistribuidoresView();  
                     } else{
-                        SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                        stage.menuDistribuidoresView();
                     }
                 } else{
-                    stage.menuDistribuidoresView();
+                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             }
         }

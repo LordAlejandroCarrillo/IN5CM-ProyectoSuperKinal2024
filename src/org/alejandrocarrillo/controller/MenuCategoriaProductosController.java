@@ -58,7 +58,7 @@ public class MenuCategoriaProductosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnAgregar){
             stage.formCategoriaProductosView();
             opcion = 1;

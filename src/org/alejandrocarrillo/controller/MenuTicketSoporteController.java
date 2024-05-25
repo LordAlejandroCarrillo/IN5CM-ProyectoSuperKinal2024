@@ -31,9 +31,9 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
 
 public class MenuTicketSoporteController implements Initializable {
     private Main stage;
-    
+    private TicketSoporte ts;
     @FXML
-    Button btnBack, btnGuardar, btnVaciar, btnListar, btnBuscar;
+    Button btnBack, btnGuardar, btnVaciar, btnListar, btnBuscar, btnEliminar;
     @FXML
     TextField textField, tfBuscar;
     @FXML
@@ -62,13 +62,19 @@ public class MenuTicketSoporteController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
+        } else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
+                eliminarTicketSoporte(ts.getTicketSoporteId());
+                cargarDatos();
+                vaciarCampos();
+            }
         } else if(event.getSource() == btnListar){
             cargarDatos();
         } else if(event.getSource() == btnGuardar){
-            if(!txtDescripcion.getText().equals("") && cmbEstatus.getSelectionModel().getSelectedItem() != null && cmbClientes.getSelectionModel().getSelectedItem() != null && cmbFacturas.getSelectionModel().getSelectedItem() != null){
+            if(!txtDescripcion.getText().equals("") && cmbClientes.getSelectionModel().getSelectedItem() != null && cmbFacturas.getSelectionModel().getSelectedItem() != null){
                token = true; 
             } else{
                 token = false;
@@ -93,6 +99,7 @@ public class MenuTicketSoporteController implements Initializable {
                         if(token){
                             editarTicket();
                             cargarDatos();
+                            vaciarCampos();
                         } else{
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                         }
@@ -127,11 +134,10 @@ public class MenuTicketSoporteController implements Initializable {
     }
     
     public void cargarEditar(){
-        TicketSoporte ts = (TicketSoporte)tblTickets.getSelectionModel().getSelectedItem();
+        ts = (TicketSoporte)tblTickets.getSelectionModel().getSelectedItem();
         if(ts !=  null){
             textField.setText(Integer.toString(ts.getTicketSoporteId()));
             txtDescripcion.setText(ts.getDescripcionTicket());
-            cmbEstatus.getSelectionModel().select(ts.getEstatus());
             cmbClientes.getSelectionModel().select(obtenerIndexCliente());
             cmbFacturas.getSelectionModel().select(obtenerIndexFactura());
         }
@@ -235,6 +241,29 @@ public class MenuTicketSoporteController implements Initializable {
                 }
             } catch(SQLException e){
                 e.printStackTrace();
+            }
+        }
+    }
+    
+        public void eliminarTicketSoporte(int id){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_eliminarTicketSoporte(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
             }
         }
     }

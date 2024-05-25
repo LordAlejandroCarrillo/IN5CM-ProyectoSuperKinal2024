@@ -65,7 +65,7 @@
          </font>
       </Text>
       <TextField fx:id="tfID" layoutX="24.0" layoutY="75.0" prefHeight="35.0" prefWidth="107.0" />
-      <Button fx:id="btnBuscar" layoutX="698.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+      <Button fx:id="btnBuscar" layoutX="533.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="18.0" />
          </font>
@@ -73,7 +73,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="tfBuscar" layoutX="503.0" layoutY="123.0" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="168.0" />
+      <TextField fx:id="tfBuscar" layoutX="338.0" layoutY="123.0" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="168.0" />
       <Button fx:id="btnListar" layoutX="24.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="58.0" style="-fx-background-color: black;" text="Listar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
@@ -123,5 +123,12 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="2.0" layoutX="636.0" layoutY="32.0" stroke="WHITE" strokeType="INSIDE" width="340.0" />
+      <Text fill="WHITE" layoutX="760.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato 00:00:00" wrappingWidth="93.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="32.0" layoutX="648.0" layoutY="123.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
+      <Button fx:id="btnEliminar" layoutX="688.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

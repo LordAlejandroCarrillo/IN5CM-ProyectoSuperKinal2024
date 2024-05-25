@@ -39,6 +39,10 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
 
 public class MenuProductosController implements Initializable {
     private Main stage;
+    private Producto pr;
+    Image cargarImg = new Image("/org/alejandrocarrillo/image/SubirImagen.png");
+    
+    ArrayList<Image> imgProductos = new ArrayList<>();
 
     public Main getStage() {
         return stage;
@@ -53,13 +57,13 @@ public class MenuProductosController implements Initializable {
     private static ResultSet resultSet = null;
     private List<File> files = null;
     @FXML
-    Button btnListar, btnBuscar, btnCargar, btnGuardar, btnVaciar, btnBack;
+    Button btnListar, btnBuscar, btnCargar, btnGuardar, btnVaciar, btnBack, btnEliminar;
     @FXML
     TextField tfNombre, tfBuscar, tfMayor, tfUnitario, tfCompra, tfCantidad, tfID;
     @FXML
     Label lblNombreProducto;
     @FXML
-    ImageView imgCargar, imgMostrar;
+    ImageView imgCargar;
     @FXML
     ComboBox cmbDistribuidor, cmbCategoria;
     @FXML
@@ -83,13 +87,14 @@ public class MenuProductosController implements Initializable {
         tfCompra.clear();
         tfCantidad.clear();
         tfID.clear();
+        imgCargar.setImage(cargarImg);
         cmbDistribuidor.getSelectionModel().clearSelection();
         cmbCategoria.getSelectionModel().clearSelection();
     }
     
     @FXML
     public void cargarEditar(){
-        Producto pr = (Producto)tblProductos.getSelectionModel().getSelectedItem();
+        pr = (Producto)tblProductos.getSelectionModel().getSelectedItem();
         if(pr !=  null){
             lblNombreProducto.setText(pr.getNombreProducto());
             txtDescripcion.setText(pr.getDescripcionProducto());
@@ -100,7 +105,6 @@ public class MenuProductosController implements Initializable {
             tfID.setText(Integer.toString(pr.getProductoId()));
             cmbDistribuidor.getSelectionModel().select(obtenerIndexDistribuidor());
             cmbCategoria.getSelectionModel().select(obtenerIndexCategoriaProducto());
-            
         }
     }
     
@@ -112,53 +116,71 @@ public class MenuProductosController implements Initializable {
     }
     
     @FXML
-    public void handleButtonAction(ActionEvent event) throws Exception{
-        boolean token;
-        boolean con = true;
-        if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
-        } else if(event.getSource() == btnCargar){
-            agregarProductos();
-        } else if(event.getSource() == btnBuscar){
-            buscarDatos();
-        } else if(event.getSource() == btnListar){
-            cargarDatos();
-        } else if(event.getSource() == btnGuardar){
-            if(cmbDistribuidor.getSelectionModel().getSelectedItem() != null&&cmbCategoria.getSelectionModel().getSelectedItem() != null && !tfID.getText().equals("") && !tfCantidad.getText().equals("") && !tfCompra.getText().equals("") && !tfUnitario.getText().equals("") && !tfMayor.getText().equals("") && !txtDescripcion.getText().equals("") && !tfNombre.getText().equals("")){
-               token = true; 
-            } else{
-                token = false;
-            }
-            if(tfID.getText().equals("")){
-                con = true;
-            } else{
-                con = false;
-            }
-            if(con){
-                if(token){
-                    SuperKinalAlert.getInstance().mostraAlertaInformacion(400);
-                    agregarProductos();
+    public void handleButtonAction(ActionEvent event){
+        try{
+            boolean token;
+            boolean con = true;
+            if(event.getSource() == btnBack){
+                stage.menuModulosView();
+            } else if(event.getSource() == btnBuscar){
+                imgCargar.setImage(cargarImg);
+                Producto producto = buscarProductos();
+                buscarDatos();
+                if(producto != null){
+                    lblNombreProducto.setText(producto.getNombreProducto());
+                    InputStream file = producto.getImagenProducto().getBinaryStream();
+                    Image image = new Image(file);
+                    if(file != null){
+                        imgCargar.setImage(image);
+                    }
+                }
+            } else if(event.getSource() == btnEliminar){
+                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
+                    eliminarProductos(pr.getProductoId());
                     cargarDatos();
                     vaciarCampos();
-                } else{
-                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
-            } else{
-                if(token){
-                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
-                        if(token){
-                            editarProductos();
-                            cargarDatos();
-                        } else{
+            } else if(event.getSource() == btnListar){
+                cargarDatos();
+            } else if(event.getSource() == btnGuardar){
+                if((imgCargar.getImage()!= null || imgCargar.getImage() != new Image("/org/alejandrocarrillo/image/SubirImagen.png")) && cmbDistribuidor.getSelectionModel().getSelectedItem() != null&&cmbCategoria.getSelectionModel().getSelectedItem() != null && !tfCantidad.getText().equals("") && !tfCompra.getText().equals("") && !tfUnitario.getText().equals("") && !tfMayor.getText().equals("") && !txtDescripcion.getText().equals("") && !tfNombre.getText().equals("")){
+                   token = true; 
+                } else{
+                    token = false;
+                }
+                if(tfID.getText().equals("")){
+                    con = true;
+                } else{
+                    con = false;
+                }
+                if(con){
+                    if(token){
+                        SuperKinalAlert.getInstance().mostraAlertaInformacion(400);
+                        agregarProductos();
+                        cargarDatos();
+                        vaciarCampos();
+                    } else{
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
-                        }
                     }
                 } else{
-                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                 if(token){
+                     if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
+                            if(token){
+                                editarProductos();
+                                cargarDatos();
+                            } else{
+                                SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                            }
+                        }
+                    } else{
+                        SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                    }
                 }
+            } else if(event.getSource() == btnVaciar){
+                vaciarCampos();
             }
-        } else if(event.getSource() == btnVaciar){
-            vaciarCampos();
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
     
@@ -203,7 +225,7 @@ public class MenuProductosController implements Initializable {
     }
     
     public void buscarDatos(){
-        tblProductos.setItems(buscarProductos());
+        tblProductos.setItems(buscarProductosTbl());
         colId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
         colNombre.setCellValueFactory(new PropertyValueFactory<Producto, String >("nombreProducto"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
@@ -214,6 +236,7 @@ public class MenuProductosController implements Initializable {
         colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("distribuidor"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("categoriaProductos"));
         tblProductos.getSortOrder().add(colId);
+        
     }
     
     @FXML
@@ -273,6 +296,9 @@ public class MenuProductosController implements Initializable {
             statement.setDouble(6,Double.parseDouble(tfMayor.getText()));
             statement.setDouble(7,Double.parseDouble(tfCompra.getText()));
             InputStream img = new FileInputStream(files.get(0));
+            if(imgCargar.getImage() == cargarImg){
+                img = null;
+            }
             statement.setBinaryStream(8,img);
             statement.setInt(9,((Distribuidor)cmbDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId());
             statement.setInt(10,((CategoriaProducto)cmbCategoria.getSelectionModel().getSelectedItem()).getCategoriaProductosId());
@@ -295,7 +321,52 @@ public class MenuProductosController implements Initializable {
         }
     }
     
-    public ObservableList<Producto> buscarProductos(){
+    public Producto buscarProductos(){
+        Producto producto = null;
+        try {
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_buscarProductos(?);";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(tfBuscar.getText()));
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                int productoId = resultSet.getInt("productoId");
+                String nombreProducto = resultSet.getString("nombreProducto");
+                String descripcionProducto = resultSet.getString("descripcionProducto");
+                int cantidadStock = resultSet.getInt("cantidadStock");
+                double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
+                double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
+                double precioCompra = resultSet.getDouble("precioCompra");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
+                String distribuidor = resultSet.getString("distribuidor");
+                String categoriaProductos = resultSet.getString("categoriaProductos");
+                producto = new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                if(resultSet != null){
+                    resultSet.close();
+                }
+
+                if(statement != null){
+                    statement.close();
+                }
+
+                if(conexion != null){
+                    conexion.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return producto;
+    }
+    
+        public ObservableList<Producto> buscarProductosTbl(){
         ArrayList<Producto> productos = new ArrayList<>();
         try {
             conexion = Conexion.getInstance().obtenerConexion();
@@ -312,7 +383,7 @@ public class MenuProductosController implements Initializable {
                 double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
-                InputStream imagenProducto = resultSet.getBinaryStream("imagenProducto");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
                 String distribuidor = resultSet.getString("distribuidor");
                 String categoriaProductos = resultSet.getString("categoriaProductos");
                 productos.add(new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos));
@@ -358,7 +429,7 @@ public class MenuProductosController implements Initializable {
                 double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
-                InputStream imagenProducto = resultSet.getBinaryStream("imagenProducto");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
                 String distribuidor = resultSet.getString("distribuidor");
                 String categoriaProductos = resultSet.getString("categoriaProductos");
                 productos.add(new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos));
@@ -426,6 +497,29 @@ public class MenuProductosController implements Initializable {
         }
         
         return FXCollections.observableList(distribuidores);
+    }
+    
+        public void eliminarProductos(int id){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_eliminarProductos(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     public ObservableList<CategoriaProducto> listarCategoriaProducto(){

@@ -23,7 +23,6 @@ public class Factura {
         this.hora = hora;
         this.clienteId = clienteId;
         this.empleadoId = empleadoId;
-        this.total = total;
     }
     //Listar
 

@@ -26,13 +26,11 @@
          <image>
             <Image url="@../image/SubirImagen.png" />
          </image></ImageView>
-      <ImageView fx:id="imgMostrar" fitHeight="150.0" fitWidth="200.0" layoutX="780.0" layoutY="202.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblNombreProducto" layoutX="779.0" layoutY="174.0" prefHeight="20.0" prefWidth="200.0" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="tfNombre" layoutX="777.0" layoutY="389.0" />
-      <Button fx:id="btnCargar" layoutX="931.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: black;" text="Cargar" textFill="WHITE" />
+      <TextField fx:id="tfNombre" layoutX="777.0" layoutY="389.0" prefWidth="202.0" />
       <TableView fx:id="tblProductos" layoutX="15.0" layoutY="402.0" onMouseClicked="#cargarEditar" prefHeight="307.0" prefWidth="730.0" style="-fx-background-radius: 5;">
          <columns>
             <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
@@ -46,7 +44,7 @@
             <TableColumn fx:id="colCategoria" minWidth="0.0" prefWidth="117.0" text="Categoría" />
          </columns>
       </TableView>
-      <Button fx:id="btnBuscar" layoutX="664.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+      <Button fx:id="btnBuscar" layoutX="509.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="18.0" />
          </font>
@@ -54,8 +52,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="tfBuscar" layoutX="469.0" layoutY="356.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="168.0" />
-      <Button fx:id="btnListar" layoutX="18.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" text="Listar" textFill="WHITE">
+      <TextField fx:id="tfBuscar" layoutX="314.0" layoutY="356.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="168.0" />
+      <Button fx:id="btnListar" layoutX="18.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" text="Listar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
          </font>
@@ -110,7 +108,7 @@
             <Font name="Bauhaus 93" size="13.0" />
          </font>
       </Button>
-      <TextArea fx:id="txtDescripcion" layoutX="545.0" layoutY="218.0" prefHeight="114.0" prefWidth="200.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="545.0" layoutY="218.0" prefHeight="125.0" prefWidth="200.0" />
       <Text fill="WHITE" layoutX="544.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="202.0">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
@@ -152,5 +150,11 @@
             <Font name="Bauhaus 93" size="20.0" />
          </font>
       </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="32.0" layoutX="618.0" layoutY="356.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
+      <Button fx:id="btnEliminar" layoutX="654.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

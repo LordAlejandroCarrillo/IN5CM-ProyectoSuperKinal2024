@@ -17,15 +17,16 @@
    <children>
       <ImageView fitHeight="725.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/MenuDetalleCompra.png" />
+            <Image url="@../image/MenuCompras.png" />
          </image>
       </ImageView>
       <TableView fx:id="tblDetalle" layoutX="14.0" layoutY="296.0" onMouseClicked="#cargarEditar" prefHeight="335.0" prefWidth="590.0" style="-fx-background-radius: 5;">
          <columns>
-            <TableColumn fx:id="colDetalle" text="Detalle Id" />
-            <TableColumn fx:id="colCantidad" prefWidth="130.0" text="Cantidad" />
-            <TableColumn fx:id="colProducto" prefWidth="189.5" text="Producto" />
-            <TableColumn fx:id="colCompra" minWidth="0.0" prefWidth="189.5" text="Compra" />
+            <TableColumn fx:id="colDetalle" text="ID" />
+            <TableColumn fx:id="colCantidad" prefWidth="90.0" text="Cantidad" />
+            <TableColumn fx:id="colProducto" prefWidth="160.0" text="Producto" />
+            <TableColumn fx:id="colCompra" minWidth="0.0" prefWidth="140.0" text="Compra" />
+            <TableColumn fx:id="colTotal" minWidth="0.0" prefWidth="119.0" text="Total" />
          </columns>
       </TableView>
       <Button fx:id="btnGuardar" layoutX="620.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="149.0" style="-fx-background-color: black;" text="Guardar" textFill="WHITE">
@@ -33,7 +34,7 @@
             <Font name="Bauhaus 93" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnVaciar" layoutX="620.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="149.0" style="-fx-background-color: black;" text="Vaciar Form" textFill="WHITE">
+      <Button fx:id="btnVaciar" layoutX="620.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="149.0" style="-fx-background-color: black;" text="Vaciar Form" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="18.0" />
          </font>
@@ -83,7 +84,22 @@
             <Font name="Bauhaus 93" size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="tfCantidad" layoutX="14.0" layoutY="672.0" prefHeight="35.0" prefWidth="208.0" />
+      <TextField fx:id="tfCantidad" layoutX="14.0" layoutY="672.0" prefHeight="35.0" prefWidth="181.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="251.0" layoutY="645.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
+      <Button fx:id="btnMas" layoutX="197.0" layoutY="672.0" maxHeight="16.0" maxWidth="17.0" minHeight="16.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: black;" text="+" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMenos" layoutX="197.0" layoutY="690.0" maxHeight="16.0" maxWidth="17.0" minHeight="16.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: black;" text="-" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="9.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminar" layoutX="620.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="149.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

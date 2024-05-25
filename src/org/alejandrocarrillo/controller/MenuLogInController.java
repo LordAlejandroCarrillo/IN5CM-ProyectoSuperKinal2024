@@ -1,0 +1,35 @@
+package org.alejandrocarrillo.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import org.alejandrocarrillo.system.Main;
+
+/**
+ * FXML Controller class
+ *
+ * @author informatica
+ */
+public class MenuLogInController implements Initializable {
+    private Main stage;
+
+    public Main getStage() {
+        return stage;
+    }
+
+    public void setStage(Main stage) {
+        this.stage = stage;
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+    
+    @FXML
+    public void handleButtonAction(){
+        
+    }
+    
+}

@@ -4,10 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuDetalleCompraController.java</file>
-            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/model/DetalleCompra.java</file>
-            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/model/Compra.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/system/Main.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuFacturasController.java</file>
             <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuDetalleFacturaController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuProductosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/FormCargosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuCargosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuClienteDatosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/view/MenuModulos.fxml</file>
             <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuEmpleadosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuComprasController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuPromocionesController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuTicketSoporteController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuCategoriaProductosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuLogInController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuClienteController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuDistribuidoresController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/model/Producto.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/model/TicketSoporte.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuModulosController.java</file>
+            <file>file:/C:/Users/Karla/OneDrive%20-%20Absolute%20Supplier/Documents/.KINAL/5TO/2BIM/Taller/Programas/IN5CM-ProyectoSuperKinal2024/src/org/alejandrocarrillo/controller/MenuPrincipalController.java</file>
         </group>
     </open-files>
 </project-private>

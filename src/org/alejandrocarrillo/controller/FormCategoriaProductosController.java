@@ -72,17 +72,17 @@ public class FormCategoriaProductosController implements Initializable {
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             } else if(MenuCategoriaProductosController.opcion == 2){
-                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
-                    if(token){
+                if(token){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
                         editarCategoriaProducto();
                         CategoriaProductoDTO.getCategoriaProductoDTO().setCategoriaProducto(null);
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(500);
-                        stage.menuCategoriaProductosView();   
+                        stage.menuCategoriaProductosView();
                     } else{
-                        SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                        stage.menuCategoriaProductosView();
                     }
                 } else{
-                    stage.menuCategoriaProductosView();
+                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             }
         }

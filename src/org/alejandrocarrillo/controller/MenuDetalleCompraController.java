@@ -42,9 +42,10 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
  */
 public class MenuDetalleCompraController implements Initializable {
     private Main stage;
+    private DetalleCompra dt;
     
     @FXML
-    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar;
+    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnMas, btnMenos, btnEliminar;
     @FXML
     TextField tfBuscar, tfDetalle, tfCantidad;
     @FXML
@@ -52,7 +53,7 @@ public class MenuDetalleCompraController implements Initializable {
     @FXML
     ComboBox cmbProducto, cmbCompra;
     @FXML
-    TableColumn colDetalle, colCantidad, colProducto, colCompra;
+    TableColumn colDetalle, colCantidad, colProducto, colCompra, colTotal;
     
     private Connection conexion;
     private PreparedStatement statement;
@@ -77,13 +78,39 @@ public class MenuDetalleCompraController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuPrincipalView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
+        } else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
+                eliminarDetalleCompra(dt.getDetalleCompraId());
+                cargarDatos();
+                vaciarCampos();
+            }
+        } else if(event.getSource() == btnMas){
+            if(!tfCantidad.getText().equals("")){
+                int cantidad = (Integer.parseInt(tfCantidad.getText()));
+                cantidad++;
+                tfCantidad.setText(Integer.toString(cantidad));
+            } else{
+                tfCantidad.setText("1");
+            }
+        } else if(event.getSource() == btnMenos){
+            if(!tfCantidad.getText().equals("")){
+                int cantidad = (Integer.parseInt(tfCantidad.getText()));
+                cantidad--;
+                if(cantidad < 0){
+                    tfCantidad.setText("1");
+                } else if(cantidad >= 1){
+                    tfCantidad.setText(Integer.toString(cantidad));
+                }
+            } else{
+                tfCantidad.setText("1");
+            }
         } else if(event.getSource() == btnListar){
             cargarDatos();
         } else if(event.getSource() == btnGuardar){
-            if(cmbCompra.getSelectionModel().getSelectedItem() != null && cmbProducto.getSelectionModel().getSelectedItem() != null && !tfCantidad.getText().equals("")){
+            if(cmbCompra.getSelectionModel().getSelectedItem() != null && cmbProducto.getSelectionModel().getSelectedItem() != null){
                token = true; 
             } else{
                 token = false;
@@ -108,6 +135,7 @@ public class MenuDetalleCompraController implements Initializable {
                         if(token){
                             editarDetalle();
                             cargarDatos();
+                            vaciarCampos();
                         } else{
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                         }
@@ -129,7 +157,7 @@ public class MenuDetalleCompraController implements Initializable {
     }
     
     public void cargarEditar(){
-        DetalleCompra dt = (DetalleCompra)tblDetalle.getSelectionModel().getSelectedItem();
+        dt = (DetalleCompra)tblDetalle.getSelectionModel().getSelectedItem();
         if(dt !=  null){
             tfDetalle.setText(Integer.toString(dt.getDetalleCompraId()));
             tfCantidad.setText(Integer.toString(dt.getCantidadCompra()));
@@ -170,6 +198,7 @@ public class MenuDetalleCompraController implements Initializable {
         colCantidad.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("cantidadCompra"));
         colProducto.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("producto"));
         colCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("compra"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Double>("totalCompra"));
         tblDetalle.getSortOrder().add(colDetalle);
     }
     
@@ -179,6 +208,7 @@ public class MenuDetalleCompraController implements Initializable {
         colCantidad.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("cantidadCompra"));
         colProducto.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("producto"));
         colCompra.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("compra"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Double>("totalCompra"));
         tblDetalle.getSortOrder().add(colDetalle);
     }
     
@@ -188,7 +218,13 @@ public class MenuDetalleCompraController implements Initializable {
             String sql = "call sp_editarDetalleCompra(?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfDetalle.getText()));
-            statement.setInt(2, Integer.parseInt(tfCantidad.getText()));
+            int cantidad = 0;
+            if(tfCantidad.getText().equals("")){
+                cantidad = 1;
+            } else{
+                cantidad = Integer.parseInt(tfCantidad.getText());
+            }
+            statement.setInt(2, cantidad);
             statement.setInt(3, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
             statement.setInt(4, ((Compra)cmbCompra.getSelectionModel().getSelectedItem()).getCompraId());
             statement.execute();
@@ -215,7 +251,13 @@ public class MenuDetalleCompraController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_agregarDetalleCompra(?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfCantidad.getText()));
+            int cantidad = 0;
+            if(tfCantidad.getText().equals("")){
+                cantidad = 1;
+            } else{
+                cantidad = Integer.parseInt(tfCantidad.getText());
+            }
+            statement.setInt(1, cantidad);
             statement.setInt(2, ((Producto)cmbProducto.getSelectionModel().getSelectedItem()).getProductoId());
             statement.setInt(3, ((Compra)cmbCompra.getSelectionModel().getSelectedItem()).getCompraId());
             statement.execute();
@@ -253,7 +295,8 @@ public class MenuDetalleCompraController implements Initializable {
                 int cantidadCompra = resultSet.getInt("cantidadCompra");
                 String producto = resultSet.getString("producto");
                 String compra = resultSet.getString("compra");
-                detalles.add(new DetalleCompra(detalleCompraId, cantidadCompra, producto, compra));
+                double totalCompra = resultSet.getDouble("totalCompra");
+                detalles.add(new DetalleCompra(detalleCompraId, cantidadCompra, producto, compra, totalCompra));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -278,6 +321,29 @@ public class MenuDetalleCompraController implements Initializable {
         return FXCollections.observableList(detalles);
     }
     
+    public void eliminarDetalleCompra(int id){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "CALL sp_eliminarDetalleCompra(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     public ObservableList<DetalleCompra> listarDetalle(){
         
         ArrayList<DetalleCompra> detalles = new ArrayList<>();
@@ -293,7 +359,8 @@ public class MenuDetalleCompraController implements Initializable {
                 int cantidadCompra = resultSet.getInt("cantidadCompra");
                 String producto = resultSet.getString("producto");
                 String compra = resultSet.getString("compra");
-                detalles.add(new DetalleCompra(detalleCompraId, cantidadCompra, producto, compra));
+                double totalCompra = resultSet.getDouble("totalCompra");
+                detalles.add(new DetalleCompra(detalleCompraId, cantidadCompra, producto, compra, totalCompra));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -336,7 +403,7 @@ public class MenuDetalleCompraController implements Initializable {
                 double precioVentaUnitario = resultSet.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
-                InputStream imagenProducto = resultSet.getBinaryStream("imagenProducto");
+                Blob imagenProducto = resultSet.getBlob("imagenProducto");
                 String distribuidor = resultSet.getString("distribuidor");
                 String categoriaProductos = resultSet.getString("categoriaProductos");
                 productos.add(new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProductos));

@@ -226,3 +226,8 @@ DELIMITER ;
 -- SELECT * FROM Productos;
 -- SELECT * FROM DetalleCompra;
 
+
+-- Promociones
+-- 
+
+

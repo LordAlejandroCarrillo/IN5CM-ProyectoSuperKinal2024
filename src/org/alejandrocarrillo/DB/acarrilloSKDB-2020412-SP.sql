@@ -296,10 +296,10 @@ DELIMITER ;
 -- FACTURAS
 -- 
 DELIMITER $$
-CREATE PROCEDURE sp_agregarFacturas(IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
+CREATE PROCEDURE sp_agregarFacturas(IN cliId INT, IN empId INT)
 BEGIN
 	INSERT INTO Facturas(fecha,hora, clienteId, empleadoId, total) VALUES
-		(NOW(),CURTIME(),cliId,empId,tot);
+		(NOW(),CURTIME(),cliId,empId,null);
 END$$
 DELIMITER ;
 
@@ -340,15 +340,12 @@ END$$
 DELIMITER ; 
 
 DELIMITER $$
-CREATE PROCEDURE sp_editarFacturas(IN facId INT, IN cliId INT, IN empId INT, IN tot DECIMAL(10,2))
+CREATE PROCEDURE sp_editarFacturas(IN cliId INT, IN empId INT)
 BEGIN
 	UPDATE Facturas
 		SET
-			fecha = NOW(),
-            hora = CURTIME(),
             clienteId = cliId,
-            empleadoId = empId,
-            total = tot
+            empleadoId = empId
 				WHERE facturaId = facId;
 END$$
 DELIMITER ;
@@ -553,13 +550,14 @@ BEGIN
 	SELECT
 		D.detalleCompraId, D.cantidadCompra,
         CONCAT('Id: ',P.productoId,' | ', P.nombreProducto) AS 'producto',
-        CONCAT('Id: ',C.compraId,' | ', C.fechaCompra) AS 'compra'
+        CONCAT('Id: ',C.compraId,' | ', C.fechaCompra) AS 'compra',
+        C.totalCompra
         FROM DetalleCompra D
         JOIN Productos P ON D.productoId = P.productoId
         JOIN Compras C ON D.compraId = C.compraId;
 END$$
 DELIMITER ;
-
+select * from compras;
 DELIMITER $$
 CREATE PROCEDURE sp_buscarDetalleCompra(IN comId INT)
 BEGIN

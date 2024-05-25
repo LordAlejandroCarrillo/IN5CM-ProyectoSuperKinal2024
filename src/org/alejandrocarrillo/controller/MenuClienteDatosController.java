@@ -57,7 +57,7 @@ public class MenuClienteDatosController implements Initializable {
         boolean token;
         if(event.getSource() == btnCancelar){
             ClienteDTO.getClienteDTO().setCliente(null);
-            stage.menuClienteView();
+            stage.menuModulosView();
         } else if(event.getSource() == btnGuardar){
             if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
                token = true; 
@@ -73,17 +73,17 @@ public class MenuClienteDatosController implements Initializable {
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             } else if(MenuClienteController.opcion == 2){
-                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
-                    if(token){
+                if(token){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(505).get() == ButtonType.OK){
                         editarCliente();
                         ClienteDTO.getClienteDTO().setCliente(null);
                         SuperKinalAlert.getInstance().mostraAlertaInformacion(500);
-                        stage.menuClienteView();   
+                        stage.menuClienteView();
                     } else{
-                        SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
+                        stage.menuClienteView();
                     }
                 } else{
-                    stage.menuClienteView();
+                    SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
             }
         }
