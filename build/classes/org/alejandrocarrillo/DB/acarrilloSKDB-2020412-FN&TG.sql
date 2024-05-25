@@ -14,31 +14,6 @@ DELIMITER ;
 
 -- FACTURAS
 --
-DELIMITER $$
-CREATE FUNCTION fn_sumaFactura(factId INT) RETURNS DECIMAL(10,2) DETERMINISTIC
-BEGIN
-	DECLARE total DECIMAL(10,2) DEFAULT 0;
-    DECLARE i INT DEFAULT 1;
-    DECLARE obtenerPrecio DECIMAL(10,2);
-    
-    contador : LOOP
-    
-    IF factId = (SELECT DetalleFactura.facturaId FROM DetalleFactura WHERE detalleFacturaId = i) THEN
-		SET obtenerPrecio = (SELECT Productos.precioVentaUnitario FROM Productos WHERE productoId = (SELECT productoId FROM DetalleFactura WHERE detalleFacturaId = i));
-        SET total = total + obtenerPrecio;
-    END IF;
-    IF i = (SELECT COUNT(*) FROM DetalleFactura) THEN
-		LEAVE contador;
-    END IF;
-    
-    SET i = i + 1;
-    END LOOP contador;
-    
-    CALL sp_asignarTotalFact(factId, total);
-    
-    RETURN total;
-END$$
-DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE sp_asignarTotalFact(IN factId INT, IN toFact DECIMAL(10,2))
@@ -229,5 +204,50 @@ DELIMITER ;
 
 -- Promociones
 -- 
-
+DELIMITER $$
+CREATE FUNCTION fn_promo(factId INT) RETURNS DOUBLE(10,2) DETERMINISTIC
+BEGIN
+	DECLARE promocion DECIMAL(10,2);
+    DECLARE obtenerPrecio DECIMAL(10,2);
+    DECLARE fecha DATE;
+    DECLARE precioFinal DECIMAL(10,2);
+    DECLARE total DECIMAL(10,2) DEFAULT 0;
+    DECLARE i INT DEFAULT 1;
+    
+    contador : LOOP
+    
+    IF factId = (SELECT DetalleFactura.facturaId FROM DetalleFactura WHERE detalleFacturaId = i) THEN
+		SET obtenerPrecio = (SELECT Productos.precioVentaUnitario FROM Productos WHERE productoId = (SELECT productoId FROM DetalleFactura WHERE detalleFacturaId = i));
+        SET fecha = (SELECT Promociones.fechaFinalizacion FROM Promociones WHERE productoId = (SELECT D.productoId FROM DetalleFactura D WHERE detalleFacturaId = i));
+        SET promocion = (SELECT Promociones.precioPromocion FROM Promociones WHERE productoId = (SELECT D.productoId FROM DetalleFactura D WHERE detalleFacturaId = i));
+        
+        IF fecha >= NOW() THEN
+			SET precioFinal = promocion;
+		END IF;
+        
+		IF fecha < NOW() THEN
+			SET precioFinal = obtenerPrecio;
+		END IF;
+        
+		SET total = total + precioFinal;
+    END IF;
+    IF i = (SELECT COUNT(*) FROM DetalleFactura) THEN
+		LEAVE contador;
+    END IF;
+    
+    SET i = i + 1;
+    END LOOP contador;
+    
+    CALL sp_asignarTotalFact(factId, total);
+    
+    RETURN total;
+END $$
+DELIMITER ;
+DROP FUNCTION fn_promo;
+SELECT fn_promo(1);
+call sp_editarpromociones(2,55.50,'25%', '2024/08/24', 2);
+select * from detallefactura;
+select * from promociones;
+select * from productos;
+select * from facturas;
 
