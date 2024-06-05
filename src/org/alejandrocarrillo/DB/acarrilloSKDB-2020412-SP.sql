@@ -491,7 +491,6 @@ BEGIN
         JOIN CategoriaProductos C ON P.categoriaProductosId = C.categoriaProductosId;
 END$$
 DELIMITER ;
-call sp_listarProductos;
 
 DELIMITER $$
 CREATE PROCEDURE sp_buscarProductos(IN proId INT)
@@ -557,7 +556,7 @@ BEGIN
         JOIN Compras C ON D.compraId = C.compraId;
 END$$
 DELIMITER ;
-select * from compras;
+
 DELIMITER $$
 CREATE PROCEDURE sp_buscarDetalleCompra(IN comId INT)
 BEGIN
@@ -700,4 +699,32 @@ BEGIN
             productoId = proId
 				WHERE detalleFacturaId = detFId;
 END$$
+DELIMITER ;
+
+-- NIVELES ACCESO
+-- 
+DELIMITER $$
+CREATE PROCEDURE sp_listarNivelesAcceso()
+BEGIN
+	SELECT * FROM NivelesAcceso;
+END $$
+DELIMITER ;
+
+
+-- USUARIOS
+-- 
+DELIMITER $$
+CREATE PROCEDURE sp_agregarUsuarios(IN usu VARCHAR(30), IN con VARCHAR(250), IN nivId INT, IN empId INT)
+BEGIN
+	INSERT INTO Usuarios(usuario, contra, nivelAccesoId, empleadoId) VALUES
+		(usu,con,nivId,empId);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE sp_buscarUsuarios(us VARCHAR(30))
+BEGIN
+	SELECT * FROM Usuarios
+		WHERE usuario = us;
+END $$
 DELIMITER ;

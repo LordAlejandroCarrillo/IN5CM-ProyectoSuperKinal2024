@@ -53,7 +53,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: black;" text="Reportes" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: black;" text="Reportes" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>

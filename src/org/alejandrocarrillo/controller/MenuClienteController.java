@@ -21,6 +21,7 @@ import org.alejandrocarrillo.dao.Conexion;
 import org.alejandrocarrillo.model.Cliente;
 import org.alejandrocarrillo.system.Main;
 import org.alejandrocarrillo.dto.ClienteDTO;
+import org.alejandrocarrillo.report.GenerarReporte;
 import org.alejandrocarrillo.utils.SuperKinalAlert;
 public class MenuClienteController implements Initializable {
 
@@ -30,7 +31,7 @@ public class MenuClienteController implements Initializable {
     @FXML
     TextField textField;
     @FXML
-    Button btnBack, btnBuscar, btnEliminar, btnAgregar, btnEditar, btnListar;
+    Button btnBack, btnBuscar, btnEliminar, btnAgregar, btnEditar, btnListar, btnReportes ;
     @FXML
             
     TableView tblClientes;
@@ -52,6 +53,8 @@ public class MenuClienteController implements Initializable {
             stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos(Integer.parseInt(textField.getText()));
+        } else if(event.getSource() == btnReportes){
+            GenerarReporte.getInstance().generarClientes();
         } else if(event.getSource() == btnAgregar){
             stage.menuClienteVDatos();
             opcion = 1;
@@ -191,6 +194,11 @@ public class MenuClienteController implements Initializable {
             statement.execute();
         } catch(SQLException e){
             System.out.println(e.getMessage());
+            String texto = e.getMessage();
+            String sbs = texto.substring(0, 36);
+            if(sbs.equals("Cannot delete or update a parent row")){
+                SuperKinalAlert.getInstance().mostraAlertaInformacion(510);
+            }
         } finally{
             try{
                 if(statement != null){

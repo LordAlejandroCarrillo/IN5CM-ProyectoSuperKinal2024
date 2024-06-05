@@ -28,6 +28,7 @@ import org.alejandrocarrillo.dao.Conexion;
 import org.alejandrocarrillo.model.Cliente;
 import org.alejandrocarrillo.model.Empleado;
 import org.alejandrocarrillo.model.Factura;
+import org.alejandrocarrillo.report.GenerarReporte;
 import org.alejandrocarrillo.system.Main;
 import org.alejandrocarrillo.utils.SuperKinalAlert;
 
@@ -35,7 +36,7 @@ public class MenuFacturasController implements Initializable {
     private Main stage;
     private Factura fa;
     @FXML
-    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnAgregar, btnEliminar;
+    Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnAgregar, btnEliminar, btnFinalizar;
     @FXML
     TextField tfBuscar, tfFactura;
     @FXML
@@ -65,7 +66,10 @@ public class MenuFacturasController implements Initializable {
         cmbEmpleado.setItems(listarEmpleados());
         cargarDatos();
     }
+    // Clientes
+    // todos los clientes en la base de datos
     
+    //Productos con sus imagenes
     @FXML
     public void handleButtonAction(ActionEvent event){
         boolean token;
@@ -74,6 +78,8 @@ public class MenuFacturasController implements Initializable {
             stage.menuModulosView();
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
+        } else if(event.getSource() == btnFinalizar){
+            GenerarReporte.getInstance().generarFactura(Integer.parseInt(tfFactura.getText()));
         } else if(event.getSource() == btnEliminar){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
                 eliminarFacturas(fa.getFacturaId());
@@ -372,6 +378,11 @@ public class MenuFacturasController implements Initializable {
             statement.execute();
         } catch(SQLException e){
             System.out.println(e.getMessage());
+            String texto = e.getMessage();
+            String sbs = texto.substring(0, 36);
+            if(sbs.equals("Cannot delete or update a parent row")){
+                SuperKinalAlert.getInstance().mostraAlertaInformacion(510);
+            }
         } finally{
             try{
                 if(statement != null){

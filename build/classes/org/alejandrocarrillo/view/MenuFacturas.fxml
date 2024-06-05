@@ -63,7 +63,7 @@
          </font>
       </Text>
       <TextField fx:id="tfFactura" layoutX="782.0" layoutY="77.0" prefHeight="35.0" prefWidth="202.0" />
-      <Button fx:id="btnBuscar" layoutX="532.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+      <Button fx:id="btnBuscar" layoutX="419.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="18.0" />
          </font>
@@ -71,7 +71,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="tfBuscar" layoutX="337.0" layoutY="38.0" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="168.0" />
+      <TextField fx:id="tfBuscar" layoutX="224.0" layoutY="38.0" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="168.0" />
       <Button fx:id="btnListar" layoutX="19.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="58.0" style="-fx-background-color: black;" text="Listar" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
@@ -90,8 +90,13 @@
             <Font name="Bauhaus 93" size="15.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="32.0" layoutX="643.0" layoutY="37.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
-      <Button fx:id="btnEliminar" layoutX="683.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="32.0" layoutX="515.0" layoutY="37.0" stroke="WHITE" strokeType="INSIDE" width="4.0" />
+      <Button fx:id="btnEliminar" layoutX="535.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnFinalizar" layoutX="639.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: black;" text="Fin Factura" textFill="WHITE">
          <font>
             <Font name="Bauhaus 93" size="18.0" />
          </font>

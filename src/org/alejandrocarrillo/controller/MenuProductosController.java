@@ -34,6 +34,7 @@ import org.alejandrocarrillo.dao.Conexion;
 import org.alejandrocarrillo.model.CategoriaProducto;
 import org.alejandrocarrillo.model.Distribuidor;
 import org.alejandrocarrillo.model.Producto;
+import org.alejandrocarrillo.report.GenerarReporte;
 import org.alejandrocarrillo.system.Main;
 import org.alejandrocarrillo.utils.SuperKinalAlert;
 
@@ -57,7 +58,7 @@ public class MenuProductosController implements Initializable {
     private static ResultSet resultSet = null;
     private List<File> files = null;
     @FXML
-    Button btnListar, btnBuscar, btnCargar, btnGuardar, btnVaciar, btnBack, btnEliminar;
+    Button btnListar, btnBuscar, btnCargar, btnGuardar, btnVaciar, btnBack, btnEliminar, btnReportes;
     @FXML
     TextField tfNombre, tfBuscar, tfMayor, tfUnitario, tfCompra, tfCantidad, tfID;
     @FXML
@@ -122,6 +123,8 @@ public class MenuProductosController implements Initializable {
             boolean con = true;
             if(event.getSource() == btnBack){
                 stage.menuModulosView();
+            } else if(event.getSource() == btnReportes){
+                GenerarReporte.getInstance().generarProductos();
             } else if(event.getSource() == btnBuscar){
                 imgCargar.setImage(cargarImg);
                 Producto producto = buscarProductos();
@@ -508,6 +511,11 @@ public class MenuProductosController implements Initializable {
             statement.execute();
         } catch(SQLException e){
             System.out.println(e.getMessage());
+            String texto = e.getMessage();
+            String sbs = texto.substring(0, 36);
+            if(sbs.equals("Cannot delete or update a parent row")){
+                SuperKinalAlert.getInstance().mostraAlertaInformacion(510);
+            }
         } finally{
             try{
                 if(statement != null){

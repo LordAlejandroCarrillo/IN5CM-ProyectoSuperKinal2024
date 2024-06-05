@@ -46,6 +46,24 @@ public class SuperKinalAlert {
             alert.setHeaderText("Campos Pendientes");
             alert.setContentText("Algunos campos necesarios para el registro estan vacios!");
             alert.showAndWait();
+        } else if(code == 506){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Usuario incorrecto");
+            alert.setHeaderText("Usuario incorrecto");
+            alert.setContentText("Verifique el Usuario");
+            alert.showAndWait();
+        } else if(code == 507){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Contra Incorrecta");
+            alert.setHeaderText("Contra Incorrecta");
+            alert.setContentText("Verifique la Contra");
+            alert.showAndWait();
+        } else if(code == 510){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Datos no Eliminados");
+            alert.setHeaderText("Datos no Eliminados");
+            alert.setContentText("No se pueden borrar estos datos, ya que estan conectados a otra tabla.");
+            alert.showAndWait();
         }
     }
     
@@ -65,5 +83,12 @@ public class SuperKinalAlert {
             action = alert.showAndWait();
         }
         return action;
+    }
+    
+    public void alertaUsuario(String usuario){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bienvenido!");
+        alert.setHeaderText("Bienvenido " + usuario + "!");
+        alert.showAndWait();
     }
 }

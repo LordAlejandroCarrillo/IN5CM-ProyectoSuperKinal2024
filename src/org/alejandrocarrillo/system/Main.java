@@ -31,7 +31,7 @@ public class Main extends Application {
         this.stage = stage;
         stage.getIcons().addAll(icons);
         stage.setTitle("SK APP");
-        menuPrincipalView();
+        menuLogIn();
         stage.show();
         stage.setResizable(false);
     }
@@ -224,7 +224,7 @@ public class Main extends Application {
     }
         
     //
-    //MENU Usuarios
+    //MENU USUARIOS
     public void menuLogInView(){
         try{
             MenuLogInController menuLogInView = (MenuLogInController)switchScene("MenuLogIn.fxml", 1000, 725);
@@ -241,8 +241,27 @@ public class Main extends Application {
            System.out.println(e.getMessage());
         }  
     }
+    
+    //
+    //MENU LOG IN
+    public void menuLogIn(){
+        try{
+            MenuLogInController menuLogIn = (MenuLogInController)switchScene("MenuLogIn.fxml", 1000, 725);
+            menuLogIn.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    public void formLogIn(){
+        try{
+            FormLogInController formLogIn = (FormLogInController)switchScene("FormLogIn.fxml", 1000, 725);
+            formLogIn.setStage(this);
+        } catch(Exception e){
+           System.out.println(e.getMessage());
+        }  
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

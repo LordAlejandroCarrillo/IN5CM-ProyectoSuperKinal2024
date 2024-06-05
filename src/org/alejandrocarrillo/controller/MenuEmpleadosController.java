@@ -31,6 +31,8 @@ import org.alejandrocarrillo.utils.SuperKinalAlert;
 public class MenuEmpleadosController implements Initializable {
     private Main stage;
     private Empleado em;
+    private int op = 0;
+    
     @FXML
     Button btnBack, btnVaciar, btnGuardar, btnBuscar, btnListar, btnAsignar, btnEliminar;
     @FXML
@@ -68,7 +70,11 @@ public class MenuEmpleadosController implements Initializable {
         boolean token;
         boolean con = true;
         if(event.getSource() == btnBack){
-            stage.menuModulosView();
+            if(FormLogInController.op == 2){
+                stage.formLogIn();
+            } else{
+                stage.menuModulosView();
+            }
         } else if(event.getSource() == btnBuscar){
             buscarDatos();
         } else if(event.getSource() == btnEliminar){
@@ -113,6 +119,9 @@ public class MenuEmpleadosController implements Initializable {
                 } else{
                     SuperKinalAlert.getInstance().mostraAlertaInformacion(504);
                 }
+            }
+            if(FormLogInController.op == 2){
+                stage.formLogIn();
             }
         } else if(event.getSource() == btnVaciar){
             vaciarCampos();
@@ -328,6 +337,11 @@ public class MenuEmpleadosController implements Initializable {
             statement.execute();
         } catch(SQLException e){
             System.out.println(e.getMessage());
+            String texto = e.getMessage();
+            String sbs = texto.substring(0, 36);
+            if(sbs.equals("Cannot delete or update a parent row")){
+                SuperKinalAlert.getInstance().mostraAlertaInformacion(510);
+            }
         } finally{
             try{
                 if(statement != null){

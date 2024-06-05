@@ -254,6 +254,11 @@ public class MenuTicketSoporteController implements Initializable {
             statement.execute();
         } catch(SQLException e){
             System.out.println(e.getMessage());
+            String texto = e.getMessage();
+            String sbs = texto.substring(0, 36);
+            if(sbs.equals("Cannot delete or update a parent row")){
+                SuperKinalAlert.getInstance().mostraAlertaInformacion(510);
+            }
         } finally{
             try{
                 if(statement != null){

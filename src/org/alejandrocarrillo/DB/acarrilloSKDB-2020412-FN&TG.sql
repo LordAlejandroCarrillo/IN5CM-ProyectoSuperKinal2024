@@ -243,11 +243,6 @@ BEGIN
     RETURN total;
 END $$
 DELIMITER ;
-DROP FUNCTION fn_promo;
-SELECT fn_promo(1);
-call sp_editarpromociones(2,55.50,'25%', '2024/08/24', 2);
-select * from detallefactura;
-select * from promociones;
-select * from productos;
-select * from facturas;
+call sp_editarpromociones(1,36,'20%', '2024/01/24', 1);
+
 

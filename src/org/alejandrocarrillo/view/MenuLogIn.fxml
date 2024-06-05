@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.alejandrocarrillo.controller.MenuLogInController">
+<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.alejandrocarrillo.controller.MenuLogInController">
    <children>
       <ImageView fitHeight="725.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,13 +24,12 @@
             <Font name="Bauhaus 93" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="287.0" layoutY="379.0" prefHeight="34.0" prefWidth="384.0" />
+      <TextField fx:id="tfUsuario" layoutX="287.0" layoutY="379.0" prefHeight="34.0" prefWidth="384.0" />
       <Text fill="WHITE" layoutX="287.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" wrappingWidth="384.0">
          <font>
             <Font name="Bauhaus 93" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="287.0" layoutY="534.0" prefHeight="34.0" prefWidth="384.0" />
       <GridPane layoutX="738.0" layoutY="291.0" prefHeight="309.0" prefWidth="200.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +39,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnRegistrar" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="91.0" prefWidth="210.0" style="-fx-background-color: black;" text="Registrar" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="btnRegistrar" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="91.0" prefWidth="210.0" style="-fx-background-color: black;" text="Registrar" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
@@ -52,10 +51,6 @@
             </Button>
          </children>
       </GridPane>
-      <Button fx:id="back" cancelButton="true" layoutX="904.0" layoutY="649.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: black; -fx-text-fill: white;" text=" ←">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Button>
+      <PasswordField fx:id="tfPass" layoutX="287.0" layoutY="534.0" prefHeight="34.0" prefWidth="384.0" />
    </children>
 </AnchorPane>

@@ -140,7 +140,41 @@ CREATE TABLE DetalleFactura(
 	CONSTRAINT FK_DetalleFactura_Productos FOREIGN KEY (productoId)
 		REFERENCES Productos(productoId)
 );
-       
+
+CREATE TABLE NivelesAcceso(
+	nivelAccesoId INT NOT NULL AUTO_INCREMENT,
+    nivelAcceso VARCHAR(40) NOT NULL,
+    PRIMARY KEY PK_nivelAccesoId (nivelAccesoId)
+);
+
+CREATE TABLE Usuarios(
+	usuarioId INT NOT NULL AUTO_INCREMENT,
+    usuario VARCHAR(30) NOT NULL,
+    contra VARCHAR(250) NOT NULL,
+    nivelAccesoId INT NOT NULL,
+    empleadoId INT NOT NULL,
+    PRIMARY KEY PK_usuarioId (usuarioId),
+    CONSTRAINT FK_Usuarios_NivelesAcceso FOREIGN KEY (nivelAccesoId)
+		REFERENCES NivelesAcceso(nivelAccesoId),
+	CONSTRAINT FK_Usuarios_Empleados FOREIGN KEY (empleadoId)
+		REFERENCES Empleados(empleadoId)
+);
+
+CREATE TABLE Logo(
+	logoId INT NOT NULL AUTO_INCREMENT,
+    logo LONGBLOB,
+    detalleFacturaId INT,
+    detalleCompraId INT,
+    productoId INT,
+    PRIMARY KEY PK_logoId (logoId),
+    CONSTRAINT FK_Logo_DetalleFactura FOREIGN KEY (detalleFacturaId)
+		REFERENCES DetalleFactura(detalleFacturaId),
+	CONSTRAINT FK_Logo_DetalleCompra FOREIGN KEY (detalleCompraId)
+		REFERENCES DetalleCompra(detalleCompraId),
+	CONSTRAINT FK_Logo_Productos FOREIGN KEY (productoId)
+		REFERENCES Productos(productoId)
+);
+
 -- INSERTAR VALORES
 	  
 INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion) VALUES
@@ -191,6 +225,20 @@ INSERT INTO DetalleFactura(facturaId , productoId) VALUES
 	(1,2),
     (2,1);
     
+INSERT INTO NivelesAcceso(nivelAcceso) VALUES
+	('Admin'),
+    ('Usuario');
+    
+INSERT INTO Usuarios(usuario, contra, nivelAccesoId, empleadoId) VALUES
+	('acarrillo','$2a$10$P4a3hk.4fPTms8Ay8HmdNuokVmiBY8zfGJmv759YIyfGpRsN1b86m',1,1),
+    ('phernandez','hola123',2,1);
+    
+INSERT INTO Logo(logo,detalleFacturaId,detalleCompraId, productoId) VALUES
+	(NULL,1,1,1),
+    (NULL,2,2,2),
+    (NULL,1,2,1),
+    (NULL,2,1,2);
+    
 SELECT * FROM Clientes;
 SELECT * FROM Cargos;
 SELECT * FROM Empleados;
@@ -203,4 +251,7 @@ SELECT * FROM Productos;
 SELECT * FROM DetalleCompra;
 SELECT * FROM Promociones;
 SELECT * FROM DetalleFactura;
+SELECT * FROM NivelesAcceso;
+SELECT * FROM Usuarios;
+SELECT * FROM Logo;
  
