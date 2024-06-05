@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clientes" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5d762bd-13fa-4075-9fc7-8625c82f5839">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal2020412"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM DetalleFactura D
-JOIN Facturas F ON D.facturaId = F.facturaId
-JOIN Clientes C ON F.clienteId = C.clienteId
-JOIN Logo L ON D.detalleFacturaId = L.detalleFacturaId]]>
+		<![CDATA[SELECT * FROM Clientes C
+JOIN Logo L ON C.logoId = L.logoId]]>
 	</queryString>
 	<field name="nit" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nit"/>

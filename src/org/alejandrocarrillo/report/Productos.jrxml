@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Producto" pageWidth="850" pageHeight="792" columnWidth="810" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb010ecb-4dec-474d-a123-16aef3d7670b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -12,12 +11,14 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal2020412"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="585"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="404"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM Productos P
 JOIN CategoriaProductos C ON P.categoriaProductosId = C.categoriaProductosId
 JOIN Distribuidores D ON P.distribuidorId = D.distribuidorId
-JOIN DetalleFactura De ON P.productoId = De.productoId
-JOIN Logo L ON De.detalleFacturaId = L.detalleFacturaId]]>
+JOIN Logo L ON P.logoId = L.logoId]]>
 	</queryString>
 	<field name="productoId" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="productoId"/>
@@ -59,99 +60,19 @@ JOIN Logo L ON De.detalleFacturaId = L.detalleFacturaId]]>
 		<property name="com.jaspersoft.studio.field.label" value="imagenProducto"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
 	</field>
-	<field name="distribuidorId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="distribuidorId"/>
-		<property name="com.jaspersoft.studio.field.label" value="distribuidorId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
-	</field>
-	<field name="categoriaProductosId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="categoriaProductosId"/>
-		<property name="com.jaspersoft.studio.field.label" value="categoriaProductosId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
-	</field>
-	<field name="COLUMN_11" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="categoriaProductosId"/>
-		<property name="com.jaspersoft.studio.field.label" value="categoriaProductosId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="categoriaproductos"/>
-	</field>
 	<field name="nombreCategoria" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nombreCategoria"/>
 		<property name="com.jaspersoft.studio.field.label" value="nombreCategoria"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="categoriaproductos"/>
-	</field>
-	<field name="descripcionCategoria" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="descripcionCategoria"/>
-		<property name="com.jaspersoft.studio.field.label" value="descripcionCategoria"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="categoriaproductos"/>
-	</field>
-	<field name="COLUMN_14" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="distribuidorId"/>
-		<property name="com.jaspersoft.studio.field.label" value="distribuidorId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
 	</field>
 	<field name="nombreDistribuidor" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nombreDistribuidor"/>
 		<property name="com.jaspersoft.studio.field.label" value="nombreDistribuidor"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
 	</field>
-	<field name="direccionDistribuidor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="direccionDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.label" value="direccionDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
-	</field>
-	<field name="nitDistribuidor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nitDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.label" value="nitDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
-	</field>
-	<field name="telefonoDistribuidor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="telefonoDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.label" value="telefonoDistribuidor"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
-	</field>
-	<field name="web" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="web"/>
-		<property name="com.jaspersoft.studio.field.label" value="web"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="distribuidores"/>
-	</field>
-	<field name="detalleFacturaId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="detalleFacturaId"/>
-		<property name="com.jaspersoft.studio.field.label" value="detalleFacturaId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="detallefactura"/>
-	</field>
-	<field name="facturaId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="facturaId"/>
-		<property name="com.jaspersoft.studio.field.label" value="facturaId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="detallefactura"/>
-	</field>
-	<field name="COLUMN_22" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="productoId"/>
-		<property name="com.jaspersoft.studio.field.label" value="productoId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="detallefactura"/>
-	</field>
-	<field name="logoId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="logoId"/>
-		<property name="com.jaspersoft.studio.field.label" value="logoId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="logo"/>
-	</field>
 	<field name="logo" class="byte[]">
 		<property name="com.jaspersoft.studio.field.name" value="logo"/>
 		<property name="com.jaspersoft.studio.field.label" value="logo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="logo"/>
-	</field>
-	<field name="COLUMN_25" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="detalleFacturaId"/>
-		<property name="com.jaspersoft.studio.field.label" value="detalleFacturaId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="logo"/>
-	</field>
-	<field name="detalleCompraId" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="detalleCompraId"/>
-		<property name="com.jaspersoft.studio.field.label" value="detalleCompraId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="logo"/>
-	</field>
-	<field name="COLUMN_27" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="productoId"/>
-		<property name="com.jaspersoft.studio.field.label" value="productoId"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="logo"/>
 	</field>
 	<group name="productoId">
@@ -160,17 +81,8 @@ JOIN Logo L ON De.detalleFacturaId = L.detalleFacturaId]]>
 	<group name="nombreProducto">
 		<groupExpression><![CDATA[$F{nombreProducto}]]></groupExpression>
 	</group>
-	<group name="descripcionProducto">
-		<groupExpression><![CDATA[$F{descripcionProducto}]]></groupExpression>
-	</group>
-	<group name="cantidadStock">
-		<groupExpression><![CDATA[$F{cantidadStock}]]></groupExpression>
-	</group>
 	<group name="precioVentaUnitario">
 		<groupExpression><![CDATA[$F{precioVentaUnitario}]]></groupExpression>
-	</group>
-	<group name="precioVentaMayor">
-		<groupExpression><![CDATA[$F{precioVentaMayor}]]></groupExpression>
 	</group>
 	<group name="precioCompra">
 		<groupExpression><![CDATA[$F{precioCompra}]]></groupExpression>
@@ -178,62 +90,14 @@ JOIN Logo L ON De.detalleFacturaId = L.detalleFacturaId]]>
 	<group name="imagenProducto">
 		<groupExpression><![CDATA[$F{imagenProducto}]]></groupExpression>
 	</group>
-	<group name="distribuidorId">
-		<groupExpression><![CDATA[$F{distribuidorId}]]></groupExpression>
-	</group>
-	<group name="categoriaProductosId">
-		<groupExpression><![CDATA[$F{categoriaProductosId}]]></groupExpression>
-	</group>
-	<group name="COLUMN_11">
-		<groupExpression><![CDATA[$F{COLUMN_11}]]></groupExpression>
-	</group>
 	<group name="nombreCategoria">
 		<groupExpression><![CDATA[$F{nombreCategoria}]]></groupExpression>
-	</group>
-	<group name="descripcionCategoria">
-		<groupExpression><![CDATA[$F{descripcionCategoria}]]></groupExpression>
-	</group>
-	<group name="COLUMN_14">
-		<groupExpression><![CDATA[$F{COLUMN_14}]]></groupExpression>
 	</group>
 	<group name="nombreDistribuidor">
 		<groupExpression><![CDATA[$F{nombreDistribuidor}]]></groupExpression>
 	</group>
-	<group name="direccionDistribuidor">
-		<groupExpression><![CDATA[$F{direccionDistribuidor}]]></groupExpression>
-	</group>
-	<group name="nitDistribuidor">
-		<groupExpression><![CDATA[$F{nitDistribuidor}]]></groupExpression>
-	</group>
-	<group name="telefonoDistribuidor">
-		<groupExpression><![CDATA[$F{telefonoDistribuidor}]]></groupExpression>
-	</group>
-	<group name="web">
-		<groupExpression><![CDATA[$F{web}]]></groupExpression>
-	</group>
-	<group name="detalleFacturaId">
-		<groupExpression><![CDATA[$F{detalleFacturaId}]]></groupExpression>
-	</group>
-	<group name="facturaId">
-		<groupExpression><![CDATA[$F{facturaId}]]></groupExpression>
-	</group>
-	<group name="COLUMN_22">
-		<groupExpression><![CDATA[$F{COLUMN_22}]]></groupExpression>
-	</group>
-	<group name="logoId">
-		<groupExpression><![CDATA[$F{logoId}]]></groupExpression>
-	</group>
 	<group name="logo">
 		<groupExpression><![CDATA[$F{logo}]]></groupExpression>
-	</group>
-	<group name="COLUMN_25">
-		<groupExpression><![CDATA[$F{COLUMN_25}]]></groupExpression>
-	</group>
-	<group name="detalleCompraId">
-		<groupExpression><![CDATA[$F{detalleCompraId}]]></groupExpression>
-	</group>
-	<group name="COLUMN_27">
-		<groupExpression><![CDATA[$F{COLUMN_27}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>

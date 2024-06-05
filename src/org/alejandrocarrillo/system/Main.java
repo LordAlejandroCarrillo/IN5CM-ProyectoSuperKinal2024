@@ -31,7 +31,7 @@ public class Main extends Application {
         this.stage = stage;
         stage.getIcons().addAll(icons);
         stage.setTitle("SK APP");
-        menuLogIn();
+        menuProductosView();
         stage.show();
         stage.setResizable(false);
     }

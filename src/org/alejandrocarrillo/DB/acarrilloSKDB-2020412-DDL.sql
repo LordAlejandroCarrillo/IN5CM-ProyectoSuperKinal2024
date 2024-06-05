@@ -4,14 +4,23 @@ CREATE DATABASE IF NOT EXISTS acarrilloSK_20204121;
 
 USE acarrilloSK_20204121;
 
+CREATE TABLE Logo(
+	logoId INT NOT NULL AUTO_INCREMENT,
+    logo LONGBLOB,
+    PRIMARY KEY PK_logoId (logoId)
+);
+
 CREATE TABLE Clientes(
 	clienteId INT NOT NULL AUTO_INCREMENT,
     nit VARCHAR(15),
     nombre VARCHAR(30) NOT NULL,
     apellido VARCHAR(30) NOT NULL,
     telefono VARCHAR(15),
-    direccion VARCHAR(200) NOT NULL	,
-    PRIMARY KEY PK_clienteId (clienteId)
+    direccion VARCHAR(200) NOT NULL,
+    logoId INT,
+    PRIMARY KEY PK_clienteId (clienteId),
+    CONSTRAINT FK_Logo FOREIGN KEY (logoId)
+		REFERENCES Logo(logoId)
 );
 
 CREATE TABLE Cargos(
@@ -58,11 +67,14 @@ CREATE TABLE Facturas(
     clienteId INT NOT NULL,
     empleadoId INT NOT NULL,
     total DECIMAL(10,2),
+    logoId INT,
     PRIMARY KEY PK_facturaId (facturaId),
     CONSTRAINT FK_Facturas_Clientes FOREIGN KEY (clienteId)
 		REFERENCES Clientes(clienteId),
 	CONSTRAINT FK_Facturas_Empleados FOREIGN KEY (empleadoId)
-		REFERENCES Empleados(empleadoId)
+		REFERENCES Empleados(empleadoId),
+	CONSTRAINT FK_Logo6 FOREIGN KEY (logoId)
+		REFERENCES Logo(logoId)
 ); 
 
 CREATE TABLE TicketSoporte(
@@ -99,11 +111,14 @@ CREATE TABLE Productos(
     imagenProducto LONGBLOB,
     distribuidorId INT NOT NULL,
     categoriaProductosId INT NOT NULL,
+    logoId INT,
     PRIMARY KEY PK_productoId (productoId),
     CONSTRAINT FK_Productos_Distribuidores FOREIGN KEY (distribuidorId)
 		REFERENCES Distribuidores(distribuidorId),
 	CONSTRAINT FK_Productos_CategoriaProductos FOREIGN KEY (categoriaProductosId)
-		REFERENCES CategoriaProductos(categoriaProductosId)
+		REFERENCES CategoriaProductos(categoriaProductosId),
+	CONSTRAINT FK_Logo9 FOREIGN KEY (logoId)
+		REFERENCES Logo(logoId)
 );
 
 CREATE TABLE DetalleCompra(
@@ -160,26 +175,13 @@ CREATE TABLE Usuarios(
 		REFERENCES Empleados(empleadoId)
 );
 
-CREATE TABLE Logo(
-	logoId INT NOT NULL AUTO_INCREMENT,
-    logo LONGBLOB,
-    detalleFacturaId INT,
-    detalleCompraId INT,
-    productoId INT,
-    PRIMARY KEY PK_logoId (logoId),
-    CONSTRAINT FK_Logo_DetalleFactura FOREIGN KEY (detalleFacturaId)
-		REFERENCES DetalleFactura(detalleFacturaId),
-	CONSTRAINT FK_Logo_DetalleCompra FOREIGN KEY (detalleCompraId)
-		REFERENCES DetalleCompra(detalleCompraId),
-	CONSTRAINT FK_Logo_Productos FOREIGN KEY (productoId)
-		REFERENCES Productos(productoId)
-);
-
 -- INSERTAR VALORES
-	  
-INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion) VALUES
-	('090912-7','Juan','Fernandez','4301-2312','Ciudad'),
-    ('785412-4','Hugo','Velasquez','5310-7897','Ciudad');
+INSERT INTO Logo(logo) VALUES
+	(NULL);
+
+INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion, logoId) VALUES
+	('090912-7','Juan','Fernandez','4301-2312','Ciudad',1),
+    ('785412-4','Hugo','Velasquez','5310-7897','Ciudad',1);
 	  
 INSERT INTO Cargos(nombre, descripcionCargo) VALUES
 	('Cargo1','Cargo1'),
@@ -197,9 +199,9 @@ INSERT INTO CategoriaProductos(nombreCategoria, descripcionCategoria) VALUES
 	('Categoria1','Categoria1'),
     ('Categoria2','Categoria');
     
-INSERT INTO Facturas(fecha, hora, clienteId, empleadoId, total) VALUES
-	(NOW(), CURTIME(),1,2,NULL),
-    (NOW(), CURTIME(),2,1,NULL);
+INSERT INTO Facturas(fecha, hora, clienteId, empleadoId, total,logoId) VALUES
+	(NOW(), CURTIME(),1,2,NULL,1),
+    (NOW(), CURTIME(),2,1,NULL,1);
     
 INSERT INTO TicketSoporte(descripcionTicket, estatus, clienteId, facturaId) VALUES
 	('Ticket Soporte 1', 'Recién Creado',1,2),
@@ -209,9 +211,9 @@ INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistrib
 	('Jorge','Casa','54641-4','5678-9812', NULL),
     ('Paco','Casa','48212-7','3645-2456', NULL);
     
-INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId) VALUES
-	('Cereal','Cereal de Chocolate',100,45,40,35,NULL,1,2),
-    ('Pan','Pan Rodajado',120,74,67,61,NULL,2,1);
+INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId, logoId) VALUES
+	('Cereal','Cereal de Chocolate',100,45,40,35,NULL,1,2,1),
+    ('Pan','Pan Rodajado',120,74,67,61,NULL,2,1,1);
     
 INSERT INTO DetalleCompra(cantidadCompra, productoId, compraId) VALUES
 	(46,1,2),
@@ -233,12 +235,6 @@ INSERT INTO Usuarios(usuario, contra, nivelAccesoId, empleadoId) VALUES
 	('acarrillo','$2a$10$P4a3hk.4fPTms8Ay8HmdNuokVmiBY8zfGJmv759YIyfGpRsN1b86m',1,1),
     ('phernandez','hola123',2,1);
     
-INSERT INTO Logo(logo,detalleFacturaId,detalleCompraId, productoId) VALUES
-	(NULL,1,1,1),
-    (NULL,2,2,2),
-    (NULL,1,2,1),
-    (NULL,2,1,2);
-    
 SELECT * FROM Clientes;
 SELECT * FROM Cargos;
 SELECT * FROM Empleados;
@@ -254,4 +250,3 @@ SELECT * FROM DetalleFactura;
 SELECT * FROM NivelesAcceso;
 SELECT * FROM Usuarios;
 SELECT * FROM Logo;
- 

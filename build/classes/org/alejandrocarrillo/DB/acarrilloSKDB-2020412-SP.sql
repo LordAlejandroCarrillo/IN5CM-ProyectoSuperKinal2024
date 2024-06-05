@@ -5,8 +5,8 @@
 DELIMITER $$
 CREATE PROCEDURE sp_agregarClientes(IN n17 VARCHAR(15), IN nom VARCHAR(30), IN ape VARCHAR(30), IN tel VARCHAR(15), IN dir VARCHAR(200))
 BEGIN
-	INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion) VALUES
-		(n17,nom,ape,tel,dir);
+	INSERT INTO Clientes(nit, nombre, apellido, telefono, direccion, logoId) VALUES
+		(n17,nom,ape,tel,dir,1);
 END$$
 DELIMITER ; 
 
@@ -57,7 +57,8 @@ BEGIN
             nombre = nom,
             apellido = ape,
             telefono = tel,
-            direccion = dir
+            direccion = dir,
+            logoId = 1
 				WHERE clienteId = cliId;
 END$$
 DELIMITER ;
@@ -298,8 +299,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_agregarFacturas(IN cliId INT, IN empId INT)
 BEGIN
-	INSERT INTO Facturas(fecha,hora, clienteId, empleadoId, total) VALUES
-		(NOW(),CURTIME(),cliId,empId,null);
+	INSERT INTO Facturas(fecha,hora, clienteId, empleadoId, total, logoId) VALUES
+		(NOW(),CURTIME(),cliId,empId,null,1);
 END$$
 DELIMITER ;
 
@@ -345,7 +346,8 @@ BEGIN
 	UPDATE Facturas
 		SET
             clienteId = cliId,
-            empleadoId = empId
+            empleadoId = empId,
+            logoId = 1
 				WHERE facturaId = facId;
 END$$
 DELIMITER ;
@@ -474,8 +476,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_agregarProductos(IN nom VARCHAR(50), IN des VARCHAR(100), IN can INT, IN uni DECIMAL(10,2), IN may DECIMAL(10,2), IN com DECIMAL(10,2), IN ima LONGBLOB, IN disId INT, IN catId INT)
 BEGIN
-	INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId) VALUES
-		(nom,des,can,uni,may,com,ima,disId,catId);
+	INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId, logoId) VALUES
+		(nom,des,can,uni,may,com,ima,disId,catId,1);
 END$$
 DELIMITER ;
 
@@ -527,7 +529,8 @@ BEGIN
             precioCompra = com,
             imagenProducto = ima,
             distribuidorId = disId,
-            categoriaProductosId = catId
+            categoriaProductosId = catId,
+            logoId = 1
 				WHERE productoId = proId;
 END$$
 DELIMITER ;

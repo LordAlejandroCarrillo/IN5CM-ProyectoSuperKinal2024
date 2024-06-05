@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc161c18-5a70-4c08-a73e-d9885059938d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal2020412"/>
 	<parameter name="factId" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM DetalleFactura D
 JOIN Facturas F ON D.facturaId = F.facturaId
 JOIN Clientes C ON F.clienteId = C.clienteId
 JOIN Productos P ON D.productoId = P.productoId
-JOIN Logo L ON D.detalleFacturaId = L.detalleFacturaId
+JOIN Logo L ON F.logoId = L.logoId
 WHERE F.facturaId = $P{factId}]]>
 	</queryString>
 	<field name="fecha" class="java.sql.Date">
